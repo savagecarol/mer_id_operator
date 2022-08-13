@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:meri_id_operator/presentation/SplashPage.dart';
 import 'package:meri_id_operator/presentation/auth/FirstPage.dart';
-import 'package:meri_id_operator/presentation/auth/PhoneNumber.dart';
+import 'package:meri_id_operator/presentation/auth/LoginPage.dart';
 import 'package:meri_id_operator/presentation/auth/otp.dart';
 import 'package:meri_id_operator/presentation/features/AddFriend.dart';
 import 'package:meri_id_operator/presentation/features/BookingDetail.dart';
@@ -38,12 +38,12 @@ class MyApp extends StatelessWidget {
             primaryColor: Colors.white,
             textTheme:
                 GoogleFonts.montserratTextTheme(Theme.of(context).textTheme)),
-        initialRoute: FirstPage.routeNamed,
+        initialRoute: LoginPage.routeNamed,
         routes: {
           SplashPage.routeNamed: (BuildContext context) => SplashPage(),
           FirstPage.routeNamed: (BuildContext context) => FirstPage(),
           OTP.routeNamed: (BuildContext context) => OTP(),
-          PhoneNumber.routeNamed: (BuildContext context) => PhoneNumber(),
+          LoginPage.routeNamed: (BuildContext context) => LoginPage(),
           AddFriend.routeNamed: (BuildContext context) => AddFriend(),
           SvgScreen.routeNamed: (BuildContext context) => const SvgScreen(),
           GoogleMapTracking.routeNamed: (BuildContext context) =>

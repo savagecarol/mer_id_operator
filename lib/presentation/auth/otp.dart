@@ -7,7 +7,7 @@ import '../custom/CustomButton.dart';
 import '../custom/CustomIcon.dart';
 import '../custom/CustomScaffold.dart';
 import '../custom/CustomTextField.dart';
-import 'PhoneNumber.dart';
+import 'LoginPage.dart';
 
 class OTP extends StatefulWidget {
   static const String routeNamed = 'OTP';
@@ -21,7 +21,7 @@ class _OTPState extends State<OTP> {
   }
 
   _routeToPhoneNumber() {
-    Navigator.pushNamed(context, PhoneNumber.routeNamed);
+    Navigator.pushNamed(context, LoginPage.routeNamed);
   }
 
   @override

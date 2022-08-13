@@ -18,6 +18,7 @@ class CustomTextField extends StatelessWidget {
   final double padding;
   final bool size;
   final bool onRegPage;
+  final bool obscureText;
 
   final int minLine;
   final int? maxLine;
@@ -39,8 +40,9 @@ class CustomTextField extends StatelessWidget {
       this.size = false,
       this.onRegPage = false,
       this.cursorColor = Styles.blackColor,
-      this.maxLine = null,
-      this.minLine = 1});
+      this.maxLine = 1,
+      this.minLine = 1,
+      this.obscureText = false});
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +58,7 @@ class CustomTextField extends StatelessWidget {
                 ? const EdgeInsets.all(0)
                 : const EdgeInsets.only(left: 16),
             child: TextFormField(
+              obscureText: obscureText,
               cursorColor: cursorColor,
               minLines: minLine,
               maxLines: maxLine,

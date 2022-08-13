@@ -20,25 +20,16 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-          padding: const EdgeInsets.all(32),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
             const SizedBox(height: 32),
             CustomText.xLargeText("Home"),
             const SizedBox(height: 32),
-            for (int i = 0; i < 10; i++)
-              CustomCard(
-                name: "Harsh Verma",
-                date: "22/09/2022",
-                time: "3:00 pm",
-                onTap: () {
-                  _routoBookingDetail();
-                },
-                makeCall: () {
-                  launchUrlString("tel:+91963852741");
-                },
-              ),
-          ])),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -5,7 +5,7 @@ import '../../utils/global.dart';
 import '../../utils/styles.dart';
 import '../custom/CustomButton.dart';
 import '../custom/CustomScaffold.dart';
-import 'PhoneNumber.dart';
+import 'LoginPage.dart';
 
 class FirstPage extends StatefulWidget {
   static const String routeNamed = "FirstPage";
@@ -46,7 +46,7 @@ class _FirstPageState extends State<FirstPage> {
   }
 
   route() {
-    Navigator.popAndPushNamed(context, PhoneNumber.routeNamed);
+    Navigator.popAndPushNamed(context, LoginPage.routeNamed);
   }
 
   @override

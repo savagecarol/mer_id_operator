@@ -3,7 +3,7 @@ import 'package:kommunicate_flutter/kommunicate_flutter.dart';
 
 import '../utils/global.dart';
 import '../utils/styles.dart';
-import 'TabPages/Add.dart';
+import 'TabPages/Attendance.dart';
 import 'TabPages/Home.dart';
 import 'TabPages/Profile.dart';
 
@@ -19,7 +19,7 @@ class _SplashPageState extends State<SplashPage> {
       case 0:
         return const Home();
       case 1:
-        return const Add();
+        return const Attendance();
       case 2:
         return const Profile();
       default:
@@ -43,7 +43,8 @@ class _SplashPageState extends State<SplashPage> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             _getBottomBarItem(index: 0, icontab: Icons.home, text: "Home"),
-            _getBottomBarItem(index: 1, icontab: Icons.add, text: "Add"),
+            _getBottomBarItem(
+                index: 1, icontab: Icons.calendar_month, text: "Attendance"),
             _getBottomBarItem(
                 index: 2, icontab: Icons.account_circle, text: "Profile"),
           ],

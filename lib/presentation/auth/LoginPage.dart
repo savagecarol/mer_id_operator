@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../utils/styles.dart';
 import '../custom/CustomButton.dart';
 import '../custom/CustomIcon.dart';
@@ -7,13 +6,13 @@ import '../custom/CustomScaffold.dart';
 import '../custom/CustomTextField.dart';
 import 'otp.dart';
 
-class PhoneNumber extends StatefulWidget {
-  static const String routeNamed = 'PhoneNumber';
+class LoginPage extends StatefulWidget {
+  static const String routeNamed = 'LoginPage';
   @override
-  State<PhoneNumber> createState() => _PhoneNumberState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _PhoneNumberState extends State<PhoneNumber> {
+class _LoginPageState extends State<LoginPage> {
   _routeToOtp() {
     Navigator.pushNamed(context, OTP.routeNamed);
   }
@@ -42,13 +41,24 @@ class _PhoneNumberState extends State<PhoneNumber> {
                 onChanged: () {},
                 onSaved: () {},
                 validator: () {},
-                labelText: 'Enter Phone Number',
+                labelText: 'Enter Username',
+              ),
+              const SizedBox(height: 16),
+              CustomTextField(
+                hintText: "",
+                hintTextSize: 16,
+                initialValue: '',
+                onChanged: () {},
+                onSaved: () {},
+                validator: () {},
+                labelText: 'Enter Password',
+                obscureText: true,
               ),
               const SizedBox(height: 32),
               CustomButton(
                 postIcon: Icons.arrow_forward_ios,
                 visiblepostIcon: false,
-                labelText: "Get Otp",
+                labelText: "Submit",
                 onTap: _routeToOtp,
                 containerColor: Styles.redColor,
               )
