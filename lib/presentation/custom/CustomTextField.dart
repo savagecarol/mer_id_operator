@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:meri_id/utils/styles.dart';
+import 'package:meri_id_operator/utils/styles.dart';
 
 class CustomTextField extends StatelessWidget {
   final String labelText;
@@ -37,55 +37,55 @@ class CustomTextField extends StatelessWidget {
       this.isPrefixIcon = false,
       this.padding = 0,
       this.size = false,
-      this.onRegPage = false , 
+      this.onRegPage = false,
       this.cursorColor = Styles.blackColor,
-      this.maxLine = null , 
-      this.minLine = 1
-     });
-
-
+      this.maxLine = null,
+      this.minLine = 1});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: padding),
-      child: Container(
-        decoration:   BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Styles.grayColor,
-                    ),
-        child: Padding(
-          padding: (isPrefixIcon) ? const EdgeInsets.all(0) : const EdgeInsets.only(left: 16),
-          child: TextFormField(
-            cursorColor: cursorColor,
+        padding: EdgeInsets.symmetric(horizontal: padding),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            color: Styles.grayColor,
+          ),
+          child: Padding(
+            padding: (isPrefixIcon)
+                ? const EdgeInsets.all(0)
+                : const EdgeInsets.only(left: 16),
+            child: TextFormField(
+              cursorColor: cursorColor,
               minLines: minLine,
               maxLines: maxLine,
               onSaved: onSaved(),
               onChanged: onChanged(),
               keyboardType: textInputType,
               initialValue: initialValue,
-              style: GoogleFonts.montserrat(textStyle: const TextStyle(fontSize: 16 , color: Styles.blackColor)),
+              style: GoogleFonts.montserrat(
+                  textStyle:
+                      const TextStyle(fontSize: 16, color: Styles.blackColor)),
               decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: hintText,
-                  labelText: labelText,
-                  labelStyle: GoogleFonts.montserrat(textStyle: const TextStyle(fontSize: 16 , color: Styles.blackColor)),
-                  prefixIcon: isPrefixIcon
-                      ? Icon(
-                          icon,
-                          color: Styles.backgroundColor,
-                          size: preIconSize,
-                        )
-                      : null,
-                  hintStyle: GoogleFonts.montserrat(textStyle: const TextStyle(fontSize: 16 , color: Styles.blackColor)), ),
-  
-        ),
-      ),
-    )
-    );
+                border: InputBorder.none,
+                hintText: hintText,
+                labelText: labelText,
+                labelStyle: GoogleFonts.montserrat(
+                    textStyle: const TextStyle(
+                        fontSize: 16, color: Styles.blackColor)),
+                prefixIcon: isPrefixIcon
+                    ? Icon(
+                        icon,
+                        color: Styles.backgroundColor,
+                        size: preIconSize,
+                      )
+                    : null,
+                hintStyle: GoogleFonts.montserrat(
+                    textStyle: const TextStyle(
+                        fontSize: 16, color: Styles.blackColor)),
+              ),
+            ),
+          ),
+        ));
   }
 }
-
-
-
-

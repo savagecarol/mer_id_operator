@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:meri_id/utils/styles.dart';
+import 'package:meri_id_operator/utils/styles.dart';
 
 class CustomButton extends StatelessWidget {
   final IconData postIcon;

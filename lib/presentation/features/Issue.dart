@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:meri_id/utils/styles.dart';
 import '../../services/widgets/CustomText.dart';
+import '../../utils/styles.dart';
 import '../custom/CustomButton.dart';
 
 class Issue extends StatefulWidget {

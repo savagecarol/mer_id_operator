@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meri_id/services/widgets/CustomText.dart';
-import 'package:meri_id/utils/styles.dart';
+import 'package:meri_id_operator/utils/styles.dart';
+
+import '../../services/widgets/CustomText.dart';
 
 class CustomCard extends StatelessWidget {
   final String booking_id;

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:meri_id/presentation/SplashPage.dart';
-import 'package:meri_id/presentation/custom/CustomButton.dart';
-import 'package:meri_id/presentation/custom/CustomScaffold.dart';
-import 'package:meri_id/utils/styles.dart';
+
+import '../../utils/styles.dart';
+import '../SplashPage.dart';
+import '../custom/CustomButton.dart';
+import '../custom/CustomScaffold.dart';
 
 class SvgScreen extends StatefulWidget {
   static const String routeNamed = 'svgScreen';

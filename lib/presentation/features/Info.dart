@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart';
-import 'package:meri_id/utils/styles.dart';
 import '../../services/widgets/CustomText.dart';
 import '../../utils/global.dart';
+import '../../utils/styles.dart';
 
 class Info extends StatefulWidget {
   static const String routeNamed = 'Info';

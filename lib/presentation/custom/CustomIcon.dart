@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meri_id/utils/styles.dart';
+import 'package:meri_id_operator/utils/styles.dart';
 
 import '../../utils/strings.dart';
 

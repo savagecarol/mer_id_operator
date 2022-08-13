@@ -1,13 +1,13 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
-import 'package:meri_id/presentation/custom/CustomButton.dart';
-import 'package:meri_id/presentation/custom/CustomLocation.dart';
-import 'package:meri_id/presentation/custom/CustomTextField.dart';
-import 'package:meri_id/presentation/features/ChooseTimeSlot.dart';
-import 'package:meri_id/services/widgets/CustomText.dart';
-import 'package:meri_id/utils/styles.dart';
+
+import '../../services/widgets/CustomText.dart';
+import '../../utils/styles.dart';
+import '../custom/CustomButton.dart';
+import '../custom/CustomLocation.dart';
+import '../custom/CustomTextField.dart';
+import 'ChooseTimeSlot.dart';
 
 class ChooseAddress extends StatefulWidget {
   static const String routeNamed = 'choose Address';
@@ -18,7 +18,6 @@ class ChooseAddress extends StatefulWidget {
 }
 
 class _ChooseAddressState extends State<ChooseAddress> {
-
   @override
   void initState() {
     super.initState();
@@ -67,8 +66,8 @@ class _ChooseAddressState extends State<ChooseAddress> {
                                 hintText: "",
                                 hintTextSize: 16,
                                 initialValue: '',
-                                onSaved:() {},
-                                onChanged: (){},
+                                onSaved: () {},
+                                onChanged: () {},
                                 validator: () {},
                                 labelText: 'Choose your location',
                               ),

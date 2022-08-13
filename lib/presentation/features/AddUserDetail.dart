@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meri_id/presentation/custom/CustomButton.dart';
-import 'package:meri_id/presentation/custom/CustomIcon.dart';
-import 'package:meri_id/presentation/custom/CustomScaffold.dart';
-import 'package:meri_id/presentation/custom/CustomTextField.dart';
-import 'package:meri_id/utils/styles.dart';
+import '../custom/CustomButton.dart';
+import '../custom/CustomScaffold.dart';
+import '../custom/CustomTextField.dart';
 
 class AdduserDetails extends StatefulWidget {
   const AdduserDetails({Key? key}) : super(key: key);

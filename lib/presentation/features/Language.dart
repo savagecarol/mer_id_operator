@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:meri_id/utils/styles.dart';
+import 'package:meri_id_operator/utils/styles.dart';
 
 import '../../services/widgets/CustomText.dart';
 

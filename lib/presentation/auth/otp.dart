@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:meri_id/presentation/auth/PhoneNumber.dart';
-import 'package:meri_id/presentation/custom/CustomButton.dart';
-import 'package:meri_id/presentation/custom/CustomIcon.dart';
-import 'package:meri_id/presentation/custom/CustomScaffold.dart';
-import 'package:meri_id/presentation/custom/CustomTextField.dart';
-import 'package:meri_id/presentation/kyc/KycStepper.dart';
-import 'package:meri_id/presentation/splashPage.dart';
-import 'package:meri_id/services/widgets/CustomText.dart';
-import 'package:meri_id/utils/styles.dart';
+
+import '../../services/widgets/CustomText.dart';
+import '../../utils/styles.dart';
+import '../SplashPage.dart';
+import '../custom/CustomButton.dart';
+import '../custom/CustomIcon.dart';
+import '../custom/CustomScaffold.dart';
+import '../custom/CustomTextField.dart';
+import 'PhoneNumber.dart';
 
 class OTP extends StatefulWidget {
   static const String routeNamed = 'OTP';
@@ -16,15 +16,11 @@ class OTP extends StatefulWidget {
 }
 
 class _OTPState extends State<OTP> {
-
   _routeToSplashPage() {
     Navigator.popAndPushNamed(context, SplashPage.routeNamed);
   }
 
- _routeToKycStepper() {
-    Navigator.popAndPushNamed(context, KycStepper.routeNamed);
-  }
-    _routeToPhoneNumber() {
+  _routeToPhoneNumber() {
     Navigator.pushNamed(context, PhoneNumber.routeNamed);
   }
 
@@ -54,22 +50,20 @@ class _OTPState extends State<OTP> {
                 validator: () {},
                 labelText: "Enter OTP",
               ),
-              const SizedBox(height :32),
+              const SizedBox(height: 32),
               CustomButton(
-                    postIcon: Icons.arrow_forward_ios,
-                    visiblepostIcon: false,
-                    labelText: "Submit",
-                    onTap: () {
-                      _routeToKycStepper();
-                    },
-                    containerColor: Styles.redColor
-                    ), 
-                    const SizedBox(height: 16,),
-           
-           InkWell(
-             child:  CustomText.mediumText("Enter Number Again"),
-             onTap: (() => _routeToPhoneNumber()),
-           )
+                  postIcon: Icons.arrow_forward_ios,
+                  visiblepostIcon: false,
+                  labelText: "Submit",
+                  onTap: () {},
+                  containerColor: Styles.redColor),
+              const SizedBox(
+                height: 16,
+              ),
+              InkWell(
+                child: CustomText.mediumText("Enter Number Again"),
+                onTap: (() => _routeToPhoneNumber()),
+              )
             ],
           ),
         ),
@@ -77,3 +71,5 @@ class _OTPState extends State<OTP> {
     );
   }
 }
+
+class KycStepper {}

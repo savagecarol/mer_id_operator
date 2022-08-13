@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:kommunicate_flutter/kommunicate_flutter.dart';
-import 'package:meri_id/presentation/TabPages/Add.dart';
-import 'package:meri_id/presentation/TabPages/Home.dart';
-import 'package:meri_id/presentation/TabPages/Profile.dart';
-import 'package:meri_id/utils/global.dart';
-import 'package:meri_id/utils/styles.dart';
+
+import '../utils/global.dart';
+import '../utils/styles.dart';
+import 'TabPages/Add.dart';
+import 'TabPages/Home.dart';
+import 'TabPages/Profile.dart';
 
 class SplashPage extends StatefulWidget {
   static const String routeNamed = 'SplashPage';
@@ -99,7 +100,7 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        bottomNavigationBar:_getBottomBar(),
+          bottomNavigationBar: _getBottomBar(),
           backgroundColor: Colors.white,
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -118,14 +119,12 @@ class _SplashPageState extends State<SplashPage> {
                   dynamic result =
                       await KommunicateFlutterPlugin.buildConversation(
                           conversationObject);
-                  print(
-                      "Conversation builder success : " + result.toString());
+                  print("Conversation builder success : " + result.toString());
                 } on Exception catch (e) {
-                  print("Conversation builder error occurred : " +
-                      e.toString());
+                  print(
+                      "Conversation builder error occurred : " + e.toString());
                 }
               })),
-
     );
   }
 }

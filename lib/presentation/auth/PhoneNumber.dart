@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:meri_id/presentation/custom/CustomButton.dart';
-import 'package:meri_id/presentation/custom/CustomIcon.dart';
-import 'package:meri_id/presentation/custom/CustomScaffold.dart';
-import 'package:meri_id/presentation/custom/CustomTextField.dart';
-import 'package:meri_id/presentation/auth/otp.dart';
-import 'package:meri_id/utils/styles.dart';
+
+import '../../utils/styles.dart';
+import '../custom/CustomButton.dart';
+import '../custom/CustomIcon.dart';
+import '../custom/CustomScaffold.dart';
+import '../custom/CustomTextField.dart';
+import 'otp.dart';
 
 class PhoneNumber extends StatefulWidget {
   static const String routeNamed = 'PhoneNumber';
@@ -35,7 +36,7 @@ class _PhoneNumberState extends State<PhoneNumber> {
                 height: 10,
               ),
               CustomTextField(
-                 hintText: "",
+                hintText: "",
                 hintTextSize: 16,
                 initialValue: '',
                 onChanged: () {},
@@ -44,13 +45,13 @@ class _PhoneNumberState extends State<PhoneNumber> {
                 labelText: 'Enter Phone Number',
               ),
               const SizedBox(height: 32),
-                   CustomButton(
-                      postIcon: Icons.arrow_forward_ios,
-                      visiblepostIcon: false,
-                      labelText: "Get Otp",
-                      onTap: _routeToOtp, 
-                      containerColor: Styles.redColor,
-                      )
+              CustomButton(
+                postIcon: Icons.arrow_forward_ios,
+                visiblepostIcon: false,
+                labelText: "Get Otp",
+                onTap: _routeToOtp,
+                containerColor: Styles.redColor,
+              )
             ],
           ),
         ),

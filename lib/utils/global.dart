@@ -1,4 +1,4 @@
-import 'package:meri_id/services/PreferenceService.dart';
+import '../services/PreferenceService.dart';
 
 var currentPage = 0;
 var role = "user";

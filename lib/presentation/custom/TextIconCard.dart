@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meri_id/utils/styles.dart';
+import 'package:meri_id_operator/utils/styles.dart';
 
 class CustomTextIconCard extends StatelessWidget {
   final String text;
@@ -48,7 +48,12 @@ class CustomTextIconCard extends StatelessWidget {
                 ? BoxDecoration(
                     color: defaultColor,
                     borderRadius: BorderRadius.circular(5),
-                    boxShadow: const [BoxShadow(color: Styles.iconColor, blurRadius: 15, offset: Offset(0, 2))])
+                    boxShadow: const [
+                        BoxShadow(
+                            color: Styles.iconColor,
+                            blurRadius: 15,
+                            offset: Offset(0, 2))
+                      ])
                 : BoxDecoration(
                     color: defaultColor,
                     borderRadius: BorderRadius.circular(5),
@@ -130,7 +135,8 @@ class CustomTextIconCard extends StatelessWidget {
                           Container(
                             child: (visiblePostIcon == true)
                                 ? GestureDetector(
-                                    onTap: (onRegpage == false) ? onTap() : () {},
+                                    onTap:
+                                        (onRegpage == false) ? onTap() : () {},
                                     child: Container(
                                       child: Icon(
                                         postIcon,

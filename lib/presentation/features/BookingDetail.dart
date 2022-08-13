@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:meri_id/presentation/features/GoogleMapTracking.dart';
-import 'package:meri_id/presentation/features/QRpage.dart';
-import 'package:meri_id/services/widgets/CustomText.dart';
-import 'package:meri_id/utils/styles.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+
+import '../../services/widgets/CustomText.dart';
+import '../../utils/styles.dart';
+import 'GoogleMapTracking.dart';
+import 'QRpage.dart';
 
 class BookingDetail extends StatefulWidget {
   static const String routeNamed = 'booking detail';
@@ -124,10 +125,12 @@ class _BookingDetailState extends State<BookingDetail> {
               children: [
                 IconButton(
                     onPressed: () {
-                       Navigator.push(
-                            context,
-                             MaterialPageRoute(builder: (context) => const QRpage(data: "lets do it")),
-                              );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const QRpage(data: "lets do it")),
+                      );
                     },
                     icon: const Icon(
                       Icons.qr_code,
@@ -140,7 +143,8 @@ class _BookingDetailState extends State<BookingDetail> {
                     icon: const Icon(Icons.call, size: 28)),
                 IconButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, GoogleMapTracking.routeNamed);
+                      Navigator.pushNamed(
+                          context, GoogleMapTracking.routeNamed);
                     },
                     icon: const Icon(Icons.location_on, size: 28))
               ],

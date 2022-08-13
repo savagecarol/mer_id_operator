@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:meri_id/presentation/SplashPage.dart';
-import 'package:meri_id/presentation/custom/CustomButton.dart';
-import 'package:meri_id/services/widgets/CustomText.dart';
-import 'package:meri_id/utils/global.dart';
-import 'package:meri_id/utils/styles.dart';
+import 'package:meri_id_operator/utils/styles.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+
+import '../../services/widgets/CustomText.dart';
+import '../../utils/global.dart';
+import '../SplashPage.dart';
+import '../custom/CustomButton.dart';
 
 class QRpage extends StatefulWidget {
   final String data;

@@ -1,12 +1,11 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:meri_id/presentation/auth/PhoneNumber.dart';
-import 'package:meri_id/presentation/custom/CustomButton.dart';
-import 'package:meri_id/services/widgets/CustomText.dart';
-import 'package:meri_id/utils/global.dart';
-import 'package:meri_id/utils/styles.dart';
+import '../../services/widgets/CustomText.dart';
+import '../../utils/global.dart';
+import '../../utils/styles.dart';
+import '../custom/CustomButton.dart';
 import '../custom/CustomScaffold.dart';
+import 'PhoneNumber.dart';
 
 class FirstPage extends StatefulWidget {
   static const String routeNamed = "FirstPage";

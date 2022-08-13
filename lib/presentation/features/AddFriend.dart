@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meri_id/presentation/custom/CustomButton.dart';
-import 'package:meri_id/presentation/custom/CustomScaffold.dart';
-import 'package:meri_id/presentation/custom/CustomTextField.dart';
+import '../custom/CustomButton.dart';
+import '../custom/CustomScaffold.dart';
+import '../custom/CustomTextField.dart';
 
 class AddFriend extends StatefulWidget {
   static const String routeNamed = "AddFriend";

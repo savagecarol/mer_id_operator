@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:meri_id/presentation/custom/CustomButton.dart';
-import 'package:meri_id/presentation/features/QRpage.dart';
-import 'package:meri_id/services/widgets/CustomText.dart';
-import 'package:meri_id/utils/styles.dart';
+
+import '../../services/widgets/CustomText.dart';
+import '../../utils/styles.dart';
+import '../custom/CustomButton.dart';
+import 'QRpage.dart';
 
 class ChooseTimeSlot extends StatefulWidget {
   static const String routeNamed = 'choose time';
@@ -23,7 +24,7 @@ class _ChooseTimeSlotState extends State<ChooseTimeSlot> {
     Navigator.pop(context);
     Navigator.push(
       context,
-       MaterialPageRoute(builder: (context) => const QRpage(data: "lets do it")),
+      MaterialPageRoute(builder: (context) => const QRpage(data: "lets do it")),
     );
   }
 
@@ -123,7 +124,7 @@ class _ChooseTimeSlotState extends State<ChooseTimeSlot> {
                                 labelText: "Submit",
                                 containerColor: Styles.redColor,
                                 onTap: () {
-                                   _submit();
+                                  _submit();
                                 })
                             : Container(),
                       ])))),

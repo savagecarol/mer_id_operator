@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:meri_id/presentation/custom/CustomButton.dart';
-import 'package:meri_id/presentation/custom/CustomIconBox.dart';
-import 'package:meri_id/services/widgets/CustomText.dart';
-import 'package:meri_id/utils/styles.dart';
+import '../../services/widgets/CustomText.dart';
+import '../../utils/styles.dart';
+import '../custom/CustomButton.dart';
+import '../custom/CustomIconBox.dart';
 import '../features/Feeds.dart';
 import '../features/Info.dart';
 import '../features/Issue.dart';
