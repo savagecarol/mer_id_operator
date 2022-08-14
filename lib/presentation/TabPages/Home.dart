@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:location/location.dart';
 import 'package:meri_id_operator/presentation/custom/CustomCard.dart';
 import 'package:meri_id_operator/presentation/features/QRpage.dart';
@@ -15,7 +17,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  bool isLoading = true;
+
+
+ 
   void initState() {
     super.initState();
     _getUserLocation();
@@ -33,6 +37,9 @@ class _HomeState extends State<Home> {
       isLoading = false;
     });
   }
+
+
+ bool isLoading = true;
 
   _navigateTo(double lat, double lng) async {
     var uri = Uri.parse("google.navigation:q=$lat,$lng&mode=d");
@@ -65,9 +72,9 @@ class _HomeState extends State<Home> {
                       CustomText.xLargeText("Home"),
                       IconButton(
                           onPressed: () {
-                            _navigateToQrPage();
+                             _navigateToQrPage();
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.qr_code,
                             size: 32,
                           ))
