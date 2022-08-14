@@ -40,6 +40,7 @@ class _ProfileState extends State<Profile> {
   }
 
   _loadingOff() {
+    if (!mounted) return;
     setState(() {
       _loading = false;
     });
@@ -88,7 +89,9 @@ class _ProfileState extends State<Profile> {
                       CustomIconBox(
                           postIcon: Icons.arrow_forward_ios,
                           visiblepostIcon: true,
-                          labelText: "News Feed",
+                          labelText: (_language)
+                              ? StringValues.newsFeed.english
+                              : StringValues.newsFeed.hindi,
                           containerColor: Styles.grayColor,
                           onTap: () {
                             _routeToFeedsPage();
@@ -99,7 +102,9 @@ class _ProfileState extends State<Profile> {
                           containerColor: Styles.grayColor,
                           postIcon: Icons.arrow_forward_ios,
                           visiblepostIcon: true,
-                          labelText: "Raise Issue",
+                          labelText: (_language)
+                              ? StringValues.raiseIssue.english
+                              : StringValues.raiseIssue.hindi,
                           onTap: () {
                             _routeToIssuePage();
                             print("harsh");
@@ -110,7 +115,9 @@ class _ProfileState extends State<Profile> {
                           postIcon: Icons.arrow_forward_ios,
                           visiblepostIcon: true,
                           postIconSize: 20,
-                          labelText: "Government Guidelines",
+                          labelText: (_language)
+                              ? StringValues.guidelines.english
+                              : StringValues.guidelines.hindi,
                           onTap: () {
                             _routeToInfoPage();
                           }),
@@ -119,7 +126,9 @@ class _ProfileState extends State<Profile> {
                           postIconSize: 20,
                           postIcon: Icons.arrow_forward_ios,
                           visiblepostIcon: true,
-                          labelText: "Language Settings",
+                          labelText: (_language)
+                              ? StringValues.languageSettings.english
+                              : StringValues.languageSettings.hindi,
                           containerColor: Styles.grayColor,
                           onTap: () {
                             _routeToLanguagePage();
@@ -129,7 +138,9 @@ class _ProfileState extends State<Profile> {
                           postIconSize: 20,
                           postIcon: Icons.arrow_forward,
                           visiblepostIcon: false,
-                          labelText: "Logout ",
+                          labelText: (_language)
+                              ? StringValues.logout.english
+                              : StringValues.logout.hindi,
                           containerColor: Styles.redColor,
                           onTap: () {
                             _logOut();

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart';
 import '../../services/widgets/CustomText.dart';
 import '../../utils/global.dart';
+import '../../utils/strings.dart';
 import '../../utils/styles.dart';
 
 class Info extends StatefulWidget {
@@ -56,7 +57,11 @@ class _InfoState extends State<Info> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomText.xLargeText("GuideLines"),
+                      CustomText.xLargeText("GuideLines"
+                          //   (_language)
+                          // ? StringValues.guidelines.english
+                          // : StringValues.guidelines.hindi,
+                          ),
                       const SizedBox(
                         height: 64,
                       ),

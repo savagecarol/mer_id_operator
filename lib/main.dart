@@ -9,7 +9,6 @@ import 'package:meri_id_operator/presentation/features/Info.dart';
 import 'package:meri_id_operator/presentation/features/Issue.dart';
 import 'package:meri_id_operator/presentation/features/Language.dart';
 import 'package:meri_id_operator/presentation/features/QRpage.dart';
-import 'package:meri_id_operator/presentation/features/SvgScreen.dart';
 import 'presentation/features/Feeds.dart';
 import 'utils/strings.dart';
 
@@ -38,7 +37,6 @@ class MyApp extends StatelessWidget {
         routes: {
           SplashPage.routeNamed: (BuildContext context) => SplashPage(),
           FirstPage.routeNamed: (BuildContext context) => FirstPage(),
-          SvgScreen.routeNamed: (BuildContext context) => const SvgScreen(),
           Feeds.routeNamed: (BuildContext context) => Feeds(),
           LanguagePage.routeNamed: (BuildContext context) => LanguagePage(),
           Issue.routeNamed: (BuildContext context) => Issue(),
@@ -46,7 +44,6 @@ class MyApp extends StatelessWidget {
           OTP.routeNamed: (BuildContext context) => OTP(),
           PhoneNumber.routeNamed: (BuildContext context) => PhoneNumber(),
           QRpage.routeNamed: (BuildContext context) => QRpage()
-               
         });
   }
 }

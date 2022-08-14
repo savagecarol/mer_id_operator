@@ -7,6 +7,7 @@ import 'package:meri_id_operator/utils/global.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../services/widgets/CustomText.dart';
+import '../../utils/strings.dart';
 import '../../utils/styles.dart';
 
 class Attendance extends StatefulWidget {
@@ -25,30 +26,30 @@ class _AttendanceState extends State<Attendance> {
   void initState() {
     super.initState();
     _parent();
-   
   }
 
-    _parent() async{
-   await _languageFunction();
+  _parent() async {
+    await _languageFunction();
     await _getUserLocation();
     await _loadingOff();
   }
 
   _languageFunction() async {
     bool val = await checkLanguage();
-      _language = val;
+    _language = val;
   }
 
-    _loadingOff() {
+  _loadingOff() {
     setState(() {
       isLoading = false;
     });
   }
+
   _getUserLocation() async {
     Location location = Location();
     final _locationData = await location.getLocation();
-      latitude = _locationData.latitude;
-      longitude = _locationData.longitude;
+    latitude = _locationData.latitude;
+    longitude = _locationData.longitude;
   }
 
   @override
@@ -70,7 +71,11 @@ class _AttendanceState extends State<Attendance> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomText.xLargeText("Attendance"),
+                      CustomText.xLargeText(
+                        (_language)
+                            ? StringValues.attendance.english
+                            : StringValues.attendance.hindi,
+                      ),
                       const SizedBox(
                         height: 32,
                       ),

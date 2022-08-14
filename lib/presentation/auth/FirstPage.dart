@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:meri_id_operator/presentation/auth/PhoneNumber.dart';
 import '../../services/widgets/CustomText.dart';
 import '../../utils/global.dart';
+import '../../utils/strings.dart';
 import '../../utils/styles.dart';
 import '../custom/CustomButton.dart';
 import '../custom/CustomScaffold.dart';
@@ -15,7 +16,6 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
-
   bool _showFingerPrintButton = true;
   bool _isTimer = true;
   bool _language = true;
@@ -73,17 +73,16 @@ class _FirstPageState extends State<FirstPage> {
               Column(
                 children: [
                   Padding(
-                      padding:
-                          (!_isTimer && _showFingerPrintButton)
-                              ? const EdgeInsets.all(0)
-                              : const EdgeInsets.all(0),
+                      padding: (!_isTimer && _showFingerPrintButton)
+                          ? const EdgeInsets.all(0)
+                          : const EdgeInsets.all(0),
                       child: (!_isTimer && _showFingerPrintButton)
                           ? CustomButton(
                               postIcon: Icons.arrow_forward_ios,
                               visiblepostIcon: false,
                               labelText: (_language)
-                                  ? "Finger Print"
-                                  : "finger print hindi",
+                                  ? StringValues.fingerprint.english
+                                  : StringValues.fingerprint.hindi,
                               containerColor: Styles.redColor,
                               onTap: () {})
                           : Container()),
@@ -94,8 +93,9 @@ class _FirstPageState extends State<FirstPage> {
                               postIcon: Icons.arrow_forward_ios,
                               visiblepostIcon: false,
                               labelText: (_language)
-                                  ? "Login by username/password"
-                                  : "Sign in by mobile number hindi",
+                                  // Login by username Password
+                                  ? StringValues.loginByUsernamePassword.english
+                                  : StringValues.loginByUsernamePassword.hindi,
                               containerColor: Styles.redColor,
                               onTap: () {
                                 route();

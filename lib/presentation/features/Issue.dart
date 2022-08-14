@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../services/widgets/CustomText.dart';
+import '../../utils/strings.dart';
 import '../../utils/styles.dart';
 import '../custom/CustomButton.dart';
 
@@ -29,7 +30,12 @@ class _IssueState extends State<Issue> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomText.xLargeText("Raise Issue"),
+                CustomText.xLargeText("Raise Issue"
+
+                    // (_language)
+                    //     ? StringValues.raiseIssue.english
+                    //     : StringValues.raiseIssue.hindi,
+                    ),
                 const SizedBox(
                   height: 32,
                 ),
@@ -56,7 +62,11 @@ class _IssueState extends State<Issue> {
                   padding: const EdgeInsets.symmetric(vertical: 32),
                   child: CustomButton(
                       postIcon: Icons.arrow_forward_ios,
-                      labelText: "Issue",
+                      labelText: "Issue"
+                      //   (_language)
+                      // ? StringValues.issue.english
+                      // : StringValues.issue.hindi,
+                      ,
                       containerColor: Styles.redColor,
                       onTap: () {
                         _raiseIssue();

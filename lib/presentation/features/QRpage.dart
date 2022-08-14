@@ -1,12 +1,11 @@
-
-
 import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:meri_id_operator/utils/styles.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+
+import '../../utils/strings.dart';
 
 class QRpage extends StatefulWidget {
   static const String routeNamed = 'qr page';
@@ -17,12 +16,11 @@ class QRpage extends StatefulWidget {
 }
 
 class _QRpageState extends State<QRpage> {
-
   final GlobalKey qrKey = GlobalKey();
   late QRViewController controller;
   Barcode? result;
 //in order to get hot reload to work.
-  
+
   @override
   void reassemble() {
     super.reassemble();
@@ -33,11 +31,8 @@ class _QRpageState extends State<QRpage> {
     }
   }
 
-
-
-void onQRViewCreated(QRViewController p1) 
-{
-//called when View gets created. 
+  void onQRViewCreated(QRViewController p1) {
+//called when View gets created.
     this.controller = p1;
 
     controller.scannedDataStream.listen((scanevent) {
@@ -63,13 +58,13 @@ void onQRViewCreated(QRViewController p1)
             child: QRView(
               key: qrKey,
               onQRViewCreated: onQRViewCreated,
-                overlay: QrScannerOverlayShape(
-                    borderWidth: 10,
-                    borderColor: Colors.teal,
-                    borderLength: 20,
-                    borderRadius: 10,
-                    cutOutSize: 220,
-                  ),
+              overlay: QrScannerOverlayShape(
+                borderWidth: 10,
+                borderColor: Colors.teal,
+                borderLength: 20,
+                borderRadius: 10,
+                cutOutSize: 220,
+              ),
             ),
           ),
           Expanded(
@@ -90,14 +85,14 @@ void onQRViewCreated(QRViewController p1)
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            backgroundColor: Styles.backgroundColor,
-            appBar: AppBar(
-              actions: [],
-              backgroundColor: Styles.backgroundColor,
-              foregroundColor: Styles.blackColor,
-              elevation: 0,
-            ),
-            body: Column(
+      backgroundColor: Styles.backgroundColor,
+      appBar: AppBar(
+        actions: [],
+        backgroundColor: Styles.backgroundColor,
+        foregroundColor: Styles.blackColor,
+        elevation: 0,
+      ),
+      body: Column(
         children: [
           Expanded(
             flex: 4,
@@ -168,13 +163,16 @@ void onQRViewCreated(QRViewController p1)
                           Text('Format: ${result!.format}'),
                         ],
                       )
-                    : Text('Scan Code'),
+                    : Text('Scan Code'
+                        //  (_language)
+                        // ? StringValues.scanCode.english
+                        // : StringValues.scanCode.hindi,
+                        ),
               ),
             ),
           ),
         ],
       ),
-      )
-      );
+    ));
   }
 }

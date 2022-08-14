@@ -8,6 +8,8 @@ import 'package:meri_id_operator/presentation/custom/CustomTextField.dart';
 import 'package:meri_id_operator/services/widgets/CustomText.dart';
 import 'package:meri_id_operator/utils/styles.dart';
 
+import '../../utils/strings.dart';
+
 class OTP extends StatefulWidget {
   static const String routeNamed = 'OTP';
   @override
@@ -47,13 +49,19 @@ class _OTPState extends State<OTP> {
                 onChanged: () {},
                 onSaved: () {},
                 validator: () {},
-                labelText: "Enter OTP",
+                labelText: "Get OTP",
+                // (_language)
+                //     ? StringValues.getOTP.english
+                //     : StringValues.getOTP.hindi,
               ),
               const SizedBox(height: 32),
               CustomButton(
                   postIcon: Icons.arrow_forward_ios,
                   visiblepostIcon: false,
                   labelText: "Submit",
+                  // (_language)
+                  // ? StringValues.submit.english
+                  // : StringValues.submit.hindi,
                   onTap: () {
                     _routeToSplashPage();
                   },
@@ -63,7 +71,10 @@ class _OTPState extends State<OTP> {
               ),
               InkWell(
                 onTap: (() => _routeToPhoneNumber()),
-                child: CustomText.mediumText("Enter Number Again"),
+                child: CustomText.mediumText("Enter Number Again")
+                  // (_language)
+                  //   ? StringValues.enterNumberAgain.english
+                  //   : StringValues.enterNumberAgain.hindi,),
               )
             ],
           ),

@@ -9,6 +9,7 @@ import 'package:meri_id_operator/utils/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../services/widgets/CustomText.dart';
+import '../../utils/strings.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class _HomeState extends State<Home> {
   double? latitude;
   double? longitude;
 
-  _parent() async{
+  _parent() async {
     await _languageFunction();
     await _getUserLocation();
     await _loadingOff();
@@ -81,7 +82,9 @@ class _HomeState extends State<Home> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CustomText.xLargeText("Home"),
+                      CustomText.xLargeText((_language)
+                          ? StringValues.home.english
+                          : StringValues.home.hindi),
                       IconButton(
                           onPressed: () {
                             _navigateToQrPage();

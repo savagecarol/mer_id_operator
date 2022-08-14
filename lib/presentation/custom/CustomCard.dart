@@ -4,6 +4,7 @@ import 'package:meri_id_operator/presentation/custom/CustomLocation.dart';
 import 'package:meri_id_operator/utils/styles.dart';
 
 import '../../services/widgets/CustomText.dart';
+import '../../utils/strings.dart';
 
 class CustomCard extends StatelessWidget {
   final String booking_id;
@@ -51,7 +52,8 @@ class CustomCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           child: Padding(
-            padding: const EdgeInsets.only(top: 16 , bottom: 8 , right: 16 , left: 16),
+            padding:
+                const EdgeInsets.only(top: 16, bottom: 8, right: 16, left: 16),
             child: Column(
               children: [
                 InkWell(
@@ -60,7 +62,11 @@ class CustomCard extends StatelessWidget {
                   },
                   child: SizedBox(
                     height: 200,
-                    child: CustomLocation(lat: lat, long: long , zoom: 12,),
+                    child: CustomLocation(
+                      lat: lat,
+                      long: long,
+                      zoom: 12,
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -81,7 +87,11 @@ class CustomCard extends StatelessWidget {
                       children: [
                         Icon(Icons.group),
                         CustomText.timeText(' ' + persons.toString()),
-                        CustomText.timeText(" Person"),
+                        CustomText.timeText(" Person"
+                            //     (_language)
+                            // ? StringValues.person.english
+                            // : StringValues.person.hindi,
+                            ),
                       ],
                     ),
                   ],
@@ -101,7 +111,11 @@ class CustomCard extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        CustomText.timeText("Booking ID : "),
+                        CustomText.timeText("Booking ID : "
+                            //     (_language)
+                            // ? StringValues.bookingID.english
+                            // : StringValues.bookingID.hindi,
+                            ),
                         CustomText.timeText(booking_id),
                       ],
                     ),

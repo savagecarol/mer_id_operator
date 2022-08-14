@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 import '../../services/widgets/CustomText.dart';
+import '../../utils/strings.dart';
 import '../../utils/styles.dart';
 
 class Feeds extends StatefulWidget {
@@ -32,7 +33,11 @@ class _FeedsState extends State<Feeds> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomText.xLargeText("News Feed"),
+                  CustomText.xLargeText("News Feed"
+                      // (_language)
+                      //   ? StringValues.newsFeed.english
+                      //   : StringValues.newsFeed.hindi,
+                      ),
                   const SizedBox(
                     height: 64,
                   ),

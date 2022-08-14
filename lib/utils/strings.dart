@@ -33,4 +33,14 @@ abstract class StringValues {
   static Language submit = Language(english: "Submit", hindi: "प्रस्तुत करना");
   static Language enterNumberAgain =
       Language(english: "Enter Number Again", hindi: "फिर से नंबर डालें");
+  static Language fingerprint =
+      Language(english: "Fingerprint", hindi: "फिंगर प्रिंट");
+  static Language issue = Language(english: "Issue", hindi: "मुद्दा");
+  static Language eng = Language(english: "English", hindi: "अंग्रेज़ी");
+  static Language hin = Language(english: "Hindi", hindi: "हिन्दी");
+  static Language scanCode =
+      Language(english: "Scan Code", hindi: "कोड स्कैन करें");
+  static Language loginByUsernamePassword = Language(
+      english: "Login by Username/Password",
+      hindi: "यूजरनेम/पासवर्ड द्वारा लॉगइन");
 }

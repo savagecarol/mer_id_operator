@@ -91,7 +91,11 @@ class _LanguagePageState extends State<LanguagePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            CustomText.mediumText("English"),
+                            CustomText.mediumText(
+                              (_language)
+                                  ? StringValues.eng.english
+                                  : StringValues.eng.hindi,
+                            ),
                             Switch(
                               value: english,
                               onChanged: (value) async {
@@ -112,7 +116,11 @@ class _LanguagePageState extends State<LanguagePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            CustomText.mediumText("Hindi"),
+                            CustomText.mediumText(
+                              (_language)
+                                  ? StringValues.hin.english
+                                  : StringValues.hin.hindi,
+                            ),
                             Switch(
                               value: hindi,
                               onChanged: (value) async {
