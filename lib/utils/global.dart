@@ -32,6 +32,9 @@ String? requiredString(String value) {
   return null;
 }
 
+Future<bool> checkLanguage() async => (await preferenceService.getLanguage() == null ||
+     await preferenceService.getLanguage() == "english");
+
 
   // Widget _dialoque() {
   //   return Builder(builder: (context) {

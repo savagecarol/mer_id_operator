@@ -49,7 +49,7 @@ class _InfoState extends State<Info> {
         ),
         body: _isLoading
             ? const Center(
-                child: CircularProgressIndicator(color: Styles.blackColor))
+                child: CircularProgressIndicator(color: Styles.redColor))
             : SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.all(32),
