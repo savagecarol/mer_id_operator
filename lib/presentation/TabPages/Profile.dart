@@ -40,7 +40,6 @@ class _ProfileState extends State<Profile> {
           padding: const EdgeInsets.all(32),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const SizedBox(height: 32),
             CustomText.xLargeText("Profile"),
             const SizedBox(height: 32),
             CustomText.mediumText("Kartikeya Sharma"),

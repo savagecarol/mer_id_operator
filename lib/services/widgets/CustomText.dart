@@ -44,8 +44,8 @@ abstract class CustomText {
     return Text(text,
         style: GoogleFonts.montserrat(
             textStyle: const TextStyle(
-                fontSize: 16,
+                fontSize: 15,
                 color: Styles.blackColor,
-                fontWeight: FontWeight.w400)));
+                fontWeight: FontWeight.w500)));
   }
 }

@@ -1,76 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:meri_id_operator/utils/styles.dart';
-import 'package:qr_flutter/qr_flutter.dart';
-
-import '../../services/widgets/CustomText.dart';
-import '../../utils/global.dart';
-import '../SplashPage.dart';
-import '../custom/CustomButton.dart';
+import 'package:qrscan/qrscan.dart' as scanner;
 
 class QRpage extends StatefulWidget {
-  final String data;
-
-  const QRpage({Key? key, required this.data}) : super(key: key);
+ static const String routeNamed = 'qr page';
+  const QRpage({Key? key}) : super(key: key);
 
   @override
   State<QRpage> createState() => _QRpageState();
 }
 
 class _QRpageState extends State<QRpage> {
+  String result = "Hello World...!";
+  
+  Future _scanQR() async {
+    try {
+      String? cameraScanResult = await scanner.scan();
+      setState(() {
+        result =
+            cameraScanResult!; // setting string result with cameraScanResult
+      });
+    } on PlatformException catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+         backgroundColor: Styles.backgroundColor,
+        appBar: AppBar(
+          actions: [],
           backgroundColor: Styles.backgroundColor,
-          body: Container(
-              color: Styles.backgroundColor,
-              child: Padding(
-                  padding: const EdgeInsets.all(32),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomText.largeText("QR code of booking"),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            CustomText.mediumText("Booking id"),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 32, vertical: 128),
-                              child: QrImage(
-                                data: (widget.data == null) ? "" : widget.data,
-                                version: QrVersions.auto,
-                                size: 320,
-                              ),
-                            ),
-                          ],
-                        ),
-                        (currentPage == 1)
-                            ? CustomButton(
-                                postIconSize: 20,
-                                postIcon: Icons.arrow_forward,
-                                visiblepostIcon: false,
-                                labelText: "Go To Home Page",
-                                containerColor: Styles.redColor,
-                                onTap: () {
-                                  currentPage = 0;
-                                  Navigator.popAndPushNamed(
-                                      context, SplashPage.routeNamed);
-                                })
-                            : CustomButton(
-                                postIconSize: 20,
-                                postIcon: Icons.arrow_forward,
-                                visiblepostIcon: false,
-                                labelText: "Go Back",
-                                containerColor: Styles.redColor,
-                                onTap: () {
-                                  Navigator.pop(context);
-                                })
-                      ])))),
+          foregroundColor: Styles.blackColor,
+          elevation: 0,
+        ),
+        body: Center(
+          child: Text(result), // Here the scanned result will be shown
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+            icon: Icon(Icons.camera_alt),
+            onPressed: () {
+              _scanQR(); // calling a function when user click on button
+            },
+            label: Text("Scan")),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      ),
     );
   }
 }

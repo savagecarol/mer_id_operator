@@ -1,26 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:meri_id_operator/presentation/SplashPage.dart';
-import 'package:meri_id_operator/presentation/auth/PhoneNumber.dart';
+import 'package:meri_id_operator/presentation/auth/otp.dart';
 import 'package:meri_id_operator/presentation/custom/CustomButton.dart';
 import 'package:meri_id_operator/presentation/custom/CustomIcon.dart';
 import 'package:meri_id_operator/presentation/custom/CustomScaffold.dart';
 import 'package:meri_id_operator/presentation/custom/CustomTextField.dart';
-import 'package:meri_id_operator/services/widgets/CustomText.dart';
 import 'package:meri_id_operator/utils/styles.dart';
 
-class OTP extends StatefulWidget {
-  static const String routeNamed = 'OTP';
+class PhoneNumber extends StatefulWidget {
+  static const String routeNamed = 'PhoneNumber';
   @override
-  State<OTP> createState() => _OTPState();
+  State<PhoneNumber> createState() => _PhoneNumberState();
 }
 
-class _OTPState extends State<OTP> {
-  _routeToSplashPage() {
-    Navigator.popAndPushNamed(context, SplashPage.routeNamed);
-  }
-
-  _routeToPhoneNumber() {
-    Navigator.pushNamed(context, PhoneNumber.routeNamed);
+class _PhoneNumberState extends State<PhoneNumber> {
+  _routeToOtp() {
+    Navigator.pushNamed(context, OTP.routeNamed);
   }
 
   @override
@@ -41,30 +35,22 @@ class _OTPState extends State<OTP> {
                 height: 10,
               ),
               CustomTextField(
-                hintText: "",
+                 hintText: "",
                 hintTextSize: 16,
                 initialValue: '',
                 onChanged: () {},
                 onSaved: () {},
                 validator: () {},
-                labelText: "Enter OTP",
+                labelText: 'Enter Phone Number',
               ),
               const SizedBox(height: 32),
-              CustomButton(
-                  postIcon: Icons.arrow_forward_ios,
-                  visiblepostIcon: false,
-                  labelText: "Submit",
-                  onTap: () {
-                    _routeToSplashPage();
-                  },
-                  containerColor: Styles.redColor),
-              const SizedBox(
-                height: 16,
-              ),
-              InkWell(
-                onTap: (() => _routeToPhoneNumber()),
-                child: CustomText.mediumText("Enter Number Again"),
-              )
+                   CustomButton(
+                      postIcon: Icons.arrow_forward_ios,
+                      visiblepostIcon: false,
+                      labelText: "Get Otp",
+                      onTap: _routeToOtp, 
+                      containerColor: Styles.redColor,
+                      )
             ],
           ),
         ),

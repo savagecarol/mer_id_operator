@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:meri_id_operator/presentation/auth/PhoneNumber.dart';
 import '../../services/widgets/CustomText.dart';
 import '../../utils/global.dart';
 import '../../utils/styles.dart';
 import '../custom/CustomButton.dart';
 import '../custom/CustomScaffold.dart';
-import 'LoginPage.dart';
 
 class FirstPage extends StatefulWidget {
   static const String routeNamed = "FirstPage";
@@ -46,7 +46,7 @@ class _FirstPageState extends State<FirstPage> {
   }
 
   route() {
-    Navigator.popAndPushNamed(context, LoginPage.routeNamed);
+    Navigator.popAndPushNamed(context, PhoneNumber.routeNamed);
   }
 
   @override
@@ -94,7 +94,7 @@ class _FirstPageState extends State<FirstPage> {
                               postIcon: Icons.arrow_forward_ios,
                               visiblepostIcon: false,
                               labelText: (_language)
-                                  ? "Sign in by mobile number"
+                                  ? "Login by username/password"
                                   : "Sign in by mobile number hindi",
                               containerColor: Styles.redColor,
                               onTap: () {
