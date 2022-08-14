@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meri_id_operator/utils/strings.dart';
 import '../../services/widgets/CustomText.dart';
 import '../../utils/styles.dart';
 import '../custom/CustomButton.dart';
@@ -40,7 +41,7 @@ class _ProfileState extends State<Profile> {
           padding: const EdgeInsets.all(32),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            CustomText.xLargeText("Profile"),
+            CustomText.xLargeText(StringValues.profile.english),
             const SizedBox(height: 32),
             CustomText.mediumText("Kartikeya Sharma"),
             const SizedBox(height: 16),
