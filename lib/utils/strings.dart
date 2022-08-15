@@ -43,4 +43,7 @@ abstract class StringValues {
   static Language loginByUsernamePassword = Language(
       english: "Login by Username/Password",
       hindi: "यूजरनेम/पासवर्ड द्वारा लॉगइन");
+  static Language uploadSelfie =
+      Language(english: "UPLOAD SELFIE", hindi: "सेल्फी अपलोड करें");
+  //  3 more
 }

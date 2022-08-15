@@ -39,16 +39,19 @@ class CustomCard extends StatelessWidget {
         onTap();
       },
       child: Container(
+        // decoration: BoxDecoration(
+        //     color: Styles.grayColor,
+        //     borderRadius: BorderRadius.circular(10),
+        //     boxShadow: const [
+        //       BoxShadow(
+        //           color: Styles.grayColor, blurRadius: 2, offset: Offset(0, 0))
+        //     ]),
         margin: const EdgeInsets.only(bottom: 16),
         child: Card(
-          elevation: 5,
+          elevation: 10,
           shadowColor: Styles.blackColor,
           color: Colors.white,
           shape: RoundedRectangleBorder(
-            side: BorderSide(
-              color: color,
-              width: 2,
-            ),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Padding(

@@ -108,7 +108,7 @@ class _SplashPageState extends State<SplashPage> {
             children: <Widget>[Expanded(child: _getBody())],
           ),
           floatingActionButton: FloatingActionButton(
-              backgroundColor: Styles.purpleColor,
+              backgroundColor: Styles.grayColor,
               elevation: 12,
               tooltip: 'chat bot',
               child: const Icon(Icons.help, color: Styles.blackColor),
