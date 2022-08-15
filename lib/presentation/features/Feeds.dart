@@ -5,6 +5,9 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:http/http.dart';
+import 'package:meri_id_operator/presentation/custom/NewsCard.dart';
+import 'package:meri_id_operator/utils/global.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../model/News.dart';
 import '../../services/widgets/CustomText.dart';
@@ -18,30 +21,51 @@ class Feeds extends StatefulWidget {
 }
 
 class _FeedsState extends State<Feeds> {
-  bool _isLoading = true;
+  bool isLoading = true;
   String value = "No GuideLines";
-  List<News> news;
+  bool _language = true;
+  List<News> news = <News>[];
   @override
   void initState() {
     super.initState();
+    _parent();
+  }
 
-    _getNews();
+  _parent() async {
+    await _languageFunction();
+    await _getNews();
+    await _loadingOff();
+  }
+
+  _languageFunction() async {
+    bool val = await checkLanguage();
+    _language = val;
   }
 
   _getNews() async {
-    final String url =
+    const String url =
         "https://newsapi.org/v2/top-headlines?country=in&q=government&apiKey=b959933666884935be61f74caa1c9a9b";
     Response res = await get(Uri.parse(url));
     if (res.statusCode == 200) {
       var body = jsonDecode(res.body);
       if (body["status"] == 'ok') {
-        print(body["totalResults"]);
+        for (int i = 0; i < body['articles'].length; i++) {
+          news.add(News(
+              title: body['articles'][i]['title'],
+              content: body['articles'][i]['content'],
+              description: body['articles'][i]['description'],
+              publishedAt: body['articles'][i]['publishedAt'].toString(),
+              url: body['articles'][i]['url'],
+              urlToImage: body['articles'][i]['urlToImage']));
+        }
       }
-
-      setState(() {
-        _isLoading = false;
-      });
     }
+  }
+
+  _loadingOff() {
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
@@ -55,7 +79,7 @@ class _FeedsState extends State<Feeds> {
           foregroundColor: Styles.blackColor,
           elevation: 0,
         ),
-        body: (_isLoading)
+        body: (isLoading)
             ? const Center(
                 child: CircularProgressIndicator(color: Styles.redColor),
               )
@@ -63,18 +87,31 @@ class _FeedsState extends State<Feeds> {
                 child: Container(
                   color: Styles.backgroundColor,
                   child: Padding(
-                    padding: const EdgeInsets.all(32),
+                    padding:
+                        const EdgeInsets.only(bottom: 32, left: 32, right: 32),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CustomText.xLargeText("News Feed"
-                            // (_language)
-                            //   ? StringValues.newsFeed.english
-                            //   : StringValues.newsFeed.hindi,
-                            ),
-                        const SizedBox(
-                          height: 64,
+                        CustomText.xLargeText(
+                          (_language)
+                              ? StringValues.newsFeed.english
+                              : StringValues.newsFeed.hindi,
                         ),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        for (int i = 0; i < news.length; i++)
+                          NewsCard(
+                            news: news[i],
+                            ontap: () async {
+                              if (await canLaunchUrl(Uri.parse(news[i].url))) {
+                                   await launchUrl(Uri.parse(news[i].url));
+                          } 
+                             else {
+                                errorToast("This News Cannot Open");
+                              }
+                            },
+                          )
                       ],
                     ),
                   ),

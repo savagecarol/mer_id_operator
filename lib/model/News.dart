@@ -1,10 +1,17 @@
 class News {
-  late String hindi;
-  late String english;
+  late String title;
+  late String description;
+  late String url;
+  late String urlToImage;
+  late String publishedAt;
+  late String content;
 
-  Language({required String english, required String hindi}) {
-    this.english = english;
-    this.hindi = hindi;
-  }
+  News(
+      {
+      required this.title,
+      required this.content,
+      required this.description,
+      required this.publishedAt,
+      required this.url,
+      required this.urlToImage});
 }
-// https://newsapi.org/v2/top-headlines?country=in&q=government&apiKey=b959933666884935be61f74caa1c9a9b

@@ -1,3 +1,7 @@
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:meri_id_operator/utils/styles.dart';
+
 import '../services/PreferenceService.dart';
 
 var currentPage = 0;
@@ -32,9 +36,20 @@ String? requiredString(String value) {
   return null;
 }
 
-Future<bool> checkLanguage() async => (await preferenceService.getLanguage() == null ||
-     await preferenceService.getLanguage() == "english");
+Future<bool> checkLanguage() async =>
+    (await preferenceService.getLanguage() == null ||
+        await preferenceService.getLanguage() == "english");
 
+void errorToast(String message) {
+  Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.SNACKBAR,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Styles.purpleColor,
+      textColor: Colors.black,
+      fontSize: 16.0);
+}
 
   // Widget _dialoque() {
   //   return Builder(builder: (context) {
