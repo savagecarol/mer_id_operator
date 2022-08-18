@@ -40,9 +40,10 @@ abstract class StringValues {
   static Language hin = Language(english: "Hindi", hindi: "हिन्दी");
   static Language scanCode =
       Language(english: "Scan Code", hindi: "कोड स्कैन करें");
-  static Language loginByUsernamePassword = Language(
-      english: "Login by Username/Password",
-      hindi: "यूजरनेम/पासवर्ड द्वारा लॉगइन");
+
+  static Language loginByMobileNumber = Language(
+      english: "Login by Mobile Number",
+      hindi: "मोबाइल नंबर से लॉग इन करें");
   static Language uploadSelfie =
       Language(english: "UPLOAD SELFIE", hindi: "सेल्फी अपलोड करें");
   //  3 more

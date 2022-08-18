@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:meri_id_operator/services/AuthService.dart';
 import 'package:meri_id_operator/utils/styles.dart';
 
 import '../services/PreferenceService.dart';
@@ -8,6 +9,7 @@ var currentPage = 0;
 var role = "user";
 
 final PreferenceService preferenceService = PreferenceService.getInstance();
+final AuthService authService = AuthService.getInstance();
 
 String? validateEmail(String email) {
   if (email == null || email.isEmpty) return 'Required !!!';
@@ -36,46 +38,39 @@ String? requiredString(String value) {
   return null;
 }
 
+
+String? validateOtp(String otp) {
+  String? required = requiredString(otp);
+  if (required != null) return required;
+
+  RegExp regex = RegExp(r'^[0-9]{1,6}$');
+  return (!regex.hasMatch(otp)) ? 'Valid Otp!!' : null;
+}
+
+
+
 Future<bool> checkLanguage() async =>
     (await preferenceService.getLanguage() == null ||
         await preferenceService.getLanguage() == "english");
 
-void errorToast(String message) {
-  Fluttertoast.showToast(
-      msg: message,
-      toastLength: Toast.LENGTH_LONG,
-      gravity: ToastGravity.SNACKBAR,
-      timeInSecForIosWeb: 1,
-      backgroundColor: Styles.purpleColor,
-      textColor: Colors.black,
-      fontSize: 16.0);
+Widget customizedLeadingIconWidget(String message) {
+  return Container(
+    padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(25.0),
+      color: Styles.creamColor,
+    ),
+    child: Row(
+      mainAxisSize: MainAxisSize.min,
+      children:  [
+        Text(message)
+      ],
+    ),
+  );
 }
 
-  // Widget _dialoque() {
-  //   return Builder(builder: (context) {
-  //     return AlertDialog(
-  //       title: const Text('In Which Language you want to use App'),
-  //       actions: <Widget>[
-  //         TextButton(
-  //           child: const Text('Hindi'),
-  //           onPressed: () {
-  //             setState(() {
-  //               _language = false;
-  //               preferenceService.setLanguage("hindi");
-  //               _isVisible = false;
-  //             });
-  //           },
-  //         ),
-  //         TextButton(
-  //           child: const Text('English'),
-  //           onPressed: () {
-  //             setState(() {
-  //               preferenceService.setLanguage("english");
-  //               _isVisible = false;
-  //             });
-  //           },
-  //         ),
-  //       ],
-  //     );
-  //   });
-  // }
+void errorToast(String message, BuildContext context) {
+  var fToast = FToast();
+  fToast.init(context);
+  fToast.showToast(child: customizedLeadingIconWidget(message));
+}

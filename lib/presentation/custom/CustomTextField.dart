@@ -10,7 +10,7 @@ class CustomTextField extends StatelessWidget {
 
   final TextInputType textInputType;
   final Function onSaved;
-  final Function onChanged;
+  final Function(String?)? onChanged;
   final Function validator;
   final IconData icon;
   final bool isPrefixIcon;
@@ -63,7 +63,7 @@ class CustomTextField extends StatelessWidget {
               minLines: minLine,
               maxLines: maxLine,
               onSaved: onSaved(),
-              onChanged: onChanged(),
+              onChanged: onChanged,
               keyboardType: textInputType,
               initialValue: initialValue,
               style: GoogleFonts.montserrat(

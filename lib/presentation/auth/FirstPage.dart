@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:meri_id_operator/presentation/SplashPage.dart';
 import 'package:meri_id_operator/presentation/auth/PhoneNumber.dart';
 import '../../services/widgets/CustomText.dart';
 import '../../utils/global.dart';
@@ -48,6 +50,10 @@ class _FirstPageState extends State<FirstPage> {
   route() {
     Navigator.popAndPushNamed(context, PhoneNumber.routeNamed);
   }
+  _fingerPrintTest()
+  {
+      Navigator.popAndPushNamed(context, SplashPage.routeNamed);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +90,9 @@ class _FirstPageState extends State<FirstPage> {
                                   ? StringValues.fingerprint.english
                                   : StringValues.fingerprint.hindi,
                               containerColor: Styles.redColor,
-                              onTap: () {})
+                              onTap: () async {
+                                await _fingerPrintTest();
+                              })
                           : Container()),
                   Padding(
                       padding: const EdgeInsets.only(top: 32),
@@ -93,9 +101,8 @@ class _FirstPageState extends State<FirstPage> {
                               postIcon: Icons.arrow_forward_ios,
                               visiblepostIcon: false,
                               labelText: (_language)
-                                  // Login by username Password
-                                  ? StringValues.loginByUsernamePassword.english
-                                  : StringValues.loginByUsernamePassword.hindi,
+                                  ? StringValues.loginByMobileNumber.english
+                                  : StringValues.loginByMobileNumber.hindi,
                               containerColor: Styles.redColor,
                               onTap: () {
                                 route();

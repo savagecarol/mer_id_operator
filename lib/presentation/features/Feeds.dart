@@ -1,9 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:http/http.dart';
 import 'package:meri_id_operator/presentation/custom/NewsCard.dart';
 import 'package:meri_id_operator/utils/global.dart';
@@ -108,7 +105,6 @@ class _FeedsState extends State<Feeds> {
                                    await launchUrl(Uri.parse(news[i].url));
                           } 
                              else {
-                                errorToast("This News Cannot Open");
                               }
                             },
                           )

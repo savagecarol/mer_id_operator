@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:meri_id_operator/presentation/SplashPage.dart';
 import 'package:meri_id_operator/presentation/auth/FirstPage.dart';
 import 'package:meri_id_operator/presentation/auth/PhoneNumber.dart';
-import 'package:meri_id_operator/presentation/auth/otp.dart';
 import 'package:meri_id_operator/presentation/features/Info.dart';
 import 'package:meri_id_operator/presentation/features/Issue.dart';
 import 'package:meri_id_operator/presentation/features/Language.dart';
@@ -14,13 +13,11 @@ import 'package:meri_id_operator/presentation/features/Selfie.dart';
 import 'presentation/features/Feeds.dart';
 import 'utils/strings.dart';
 
-void main() {
-  final cron = Cron();
-  cron.schedule(Schedule.parse('*/15 * * * * *'), () async {
-    print('every 15 seconds Lesgooooooooooooooooooooooooooo');
-  });
-
-  // WidgetsFlutterBinding.ensureInitialized();
+void main()  {
+    final cron = Cron();
+    cron.schedule(Schedule.parse('*/15 * * * * *'), () async {
+      print('every 15 seconds Lesgooooooooooooooooooooooooooo');
+    });
   runApp(const MyApp());
 }
 
@@ -48,7 +45,6 @@ class MyApp extends StatelessWidget {
           LanguagePage.routeNamed: (BuildContext context) => LanguagePage(),
           Issue.routeNamed: (BuildContext context) => Issue(),
           Info.routeNamed: (BuildContext context) => Info(),
-          OTP.routeNamed: (BuildContext context) => OTP(),
           PhoneNumber.routeNamed: (BuildContext context) => PhoneNumber(),
           QRpage.routeNamed: (BuildContext context) => QRpage(),
           Selfie.routeNamed: (BuildContext context) => Selfie(),

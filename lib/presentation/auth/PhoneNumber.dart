@@ -4,6 +4,7 @@ import 'package:meri_id_operator/presentation/custom/CustomButton.dart';
 import 'package:meri_id_operator/presentation/custom/CustomIcon.dart';
 import 'package:meri_id_operator/presentation/custom/CustomScaffold.dart';
 import 'package:meri_id_operator/presentation/custom/CustomTextField.dart';
+import 'package:meri_id_operator/utils/global.dart';
 import 'package:meri_id_operator/utils/styles.dart';
 
 import '../../utils/strings.dart';
@@ -15,8 +16,32 @@ class PhoneNumber extends StatefulWidget {
 }
 
 class _PhoneNumberState extends State<PhoneNumber> {
-  _routeToOtp() {
-    Navigator.pushNamed(context, OTP.routeNamed);
+  String phoneNumber = "";
+  bool isButtonLoading = false;
+
+  _routeToOtp(BuildContext c) async {
+    setState(() {
+      isButtonLoading = true;
+    });
+    if (validatePhone(phoneNumber) == null) {
+      bool res = await authService.getOtp(phoneNumber);
+      if(res) 
+      {
+      Navigator.push(context ,
+       MaterialPageRoute
+       (builder: (context) => OTP(phoneNumber: phoneNumber)
+       ));
+      }
+       else {
+             errorToast("Oops!! please Connect With Admin", c);
+      }
+    }
+    else {
+      errorToast("please enter valid phone Number", c);
+    }
+        setState(() {
+              isButtonLoading = false;
+            });
   }
 
   @override
@@ -37,26 +62,24 @@ class _PhoneNumberState extends State<PhoneNumber> {
                 height: 10,
               ),
               CustomTextField(
-                hintText: "",
-                hintTextSize: 16,
-                initialValue: '',
-                onChanged: () {},
-                onSaved: () {},
-                validator: () {},
-                labelText: "Enter Phone Number",
-                // (_language)
-                //                   ? StringValues.enterPhoneNumber.english
-                //                   : StringValues.enterPhoneNumber.hindi,
-              ),
+                  hintText: "",
+                  hintTextSize: 16,
+                  initialValue: phoneNumber,
+                  onSaved: () {},
+                  onChanged: (value) {
+                    phoneNumber = value!;
+                  },
+                  validator: () {},
+                  labelText: StringValues.enterPhoneNumber.english),
               const SizedBox(height: 32),
               CustomButton(
+                isLoading: isButtonLoading,
                 postIcon: Icons.arrow_forward_ios,
                 visiblepostIcon: false,
-                labelText: "Get Otp",
-                //   (_language)
-                // ? StringValues.getOTP.english
-                // : StringValues.getOTP.hindi,
-                onTap: _routeToOtp,
+                labelText: StringValues.getOTP.english,
+                onTap: () {
+                  _routeToOtp(context);
+                },
                 containerColor: Styles.redColor,
               )
             ],
