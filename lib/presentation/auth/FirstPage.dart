@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:meri_id_operator/presentation/SplashPage.dart';
 import 'package:meri_id_operator/presentation/auth/PhoneNumber.dart';
+import 'package:meri_id_operator/presentation/custom/Fingerprint.dart';
 import '../../services/widgets/CustomText.dart';
 import '../../utils/global.dart';
 import '../../utils/strings.dart';
@@ -50,9 +51,11 @@ class _FirstPageState extends State<FirstPage> {
   route() {
     Navigator.popAndPushNamed(context, PhoneNumber.routeNamed);
   }
-  _fingerPrintTest()
-  {
-      Navigator.popAndPushNamed(context, SplashPage.routeNamed);
+
+  _fingerPrintTest(BuildContext context) async {
+    buildAvailability(context);
+    buildAuthenticate(context);
+    Navigator.popAndPushNamed(context, SplashPage.routeNamed);
   }
 
   @override
@@ -91,7 +94,7 @@ class _FirstPageState extends State<FirstPage> {
                                   : StringValues.fingerprint.hindi,
                               containerColor: Styles.redColor,
                               onTap: () async {
-                                await _fingerPrintTest();
+                                await _fingerPrintTest(context);
                               })
                           : Container()),
                   Padding(

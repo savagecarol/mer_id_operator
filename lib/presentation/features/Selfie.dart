@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:meri_id_operator/utils/global.dart';
+import 'package:meri_id_operator/utils/strings.dart';
 import '../../services/widgets/CustomText.dart';
 import '../../utils/styles.dart';
 import '../custom/CustomButton.dart';
@@ -14,10 +16,39 @@ class Selfie extends StatefulWidget {
 }
 
 class _SelfieState extends State<Selfie> {
+  bool isLoading = true;
+  bool _language = true;
+
+
+  void initState() {
+    super.initState();
+    _parent();
+  }
+
+  _parent() async {
+    await _languageFunction();
+    await _loadingOff();
+  }
+
+  _languageFunction() async {
+    bool val = await checkLanguage();
+    _language = val;
+  }
+
+  _loadingOff() {
+    setState(() {
+      isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-        body: Padding(
+        body:  (isLoading)
+        ? const Center(
+            child: CircularProgressIndicator(color: Styles.redColor),
+          )
+        : Padding(
       padding: const EdgeInsets.all(32),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -27,11 +58,9 @@ class _SelfieState extends State<Selfie> {
               const SizedBox(
                 height: 32,
               ),
-              CustomText.xLargeText("UPLOAD SELFIE"
-                  // (_language)
-                  //             ? StringValues.languageSettings.english
-                  //             : StringValues.languageSettings.hindi
-                  ),
+              CustomText.xLargeText((_language)
+                  ? StringValues.languageSettings.english
+                  : StringValues.languageSettings.hindi),
               Padding(
                 padding: const EdgeInsets.all(32),
                 child: CustomImageContainer(

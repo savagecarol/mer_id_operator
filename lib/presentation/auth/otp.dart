@@ -33,7 +33,7 @@ class _OTPState extends State<OTP> {
       isButtonLoading = true;
     });
     if (validateOtp(otp) == null) {
-      bool res = await authService.login(widget.phoneNumber , otp);
+      bool res = await apiService.login(widget.phoneNumber , otp);
       if (res) {
         Navigator.pop(context);
         Navigator.pushNamed(context, SplashPage.routeNamed);

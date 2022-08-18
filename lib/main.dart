@@ -46,7 +46,6 @@ class MyApp extends StatelessWidget {
           Issue.routeNamed: (BuildContext context) => Issue(),
           Info.routeNamed: (BuildContext context) => Info(),
           PhoneNumber.routeNamed: (BuildContext context) => PhoneNumber(),
-          QRpage.routeNamed: (BuildContext context) => QRpage(),
           Selfie.routeNamed: (BuildContext context) => Selfie(),
         });
   }

@@ -24,13 +24,13 @@ class _PhoneNumberState extends State<PhoneNumber> {
       isButtonLoading = true;
     });
     if (validatePhone(phoneNumber) == null) {
-      bool res = await authService.getOtp(phoneNumber);
+      bool res = await apiService.getOtp(phoneNumber);
       if(res) 
       {
-      Navigator.push(context ,
-       MaterialPageRoute
-       (builder: (context) => OTP(phoneNumber: phoneNumber)
-       ));
+        Navigator.push(context ,
+            MaterialPageRoute
+            (builder: (context) => OTP(phoneNumber: phoneNumber)
+        ));
       }
        else {
              errorToast("Oops!! please Connect With Admin", c);

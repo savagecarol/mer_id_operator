@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:meri_id_operator/services/AuthService.dart';
+import 'package:meri_id_operator/model/UserProfile.dart';
+import 'package:meri_id_operator/services/ApiService.dart';
 import 'package:meri_id_operator/utils/styles.dart';
 
 import '../services/PreferenceService.dart';
 
 var currentPage = 0;
 var role = "user";
+UserProfile userProfile = UserProfile(name: "", number: "" , userId: "");
 
 final PreferenceService preferenceService = PreferenceService.getInstance();
-final AuthService authService = AuthService.getInstance();
+final ApiService apiService = ApiService.getInstance();
 
 String? validateEmail(String email) {
   if (email == null || email.isEmpty) return 'Required !!!';
@@ -58,12 +60,12 @@ Widget customizedLeadingIconWidget(String message) {
     padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(25.0),
-      color: Styles.creamColor,
+      color: Styles.blackColor,
     ),
     child: Row(
       mainAxisSize: MainAxisSize.min,
       children:  [
-        Text(message)
+        Text(message , style: const TextStyle(color: Styles.backgroundColor))
       ],
     ),
   );
@@ -72,5 +74,5 @@ Widget customizedLeadingIconWidget(String message) {
 void errorToast(String message, BuildContext context) {
   var fToast = FToast();
   fToast.init(context);
-  fToast.showToast(child: customizedLeadingIconWidget(message));
+  fToast.showToast(child: customizedLeadingIconWidget(message),gravity: ToastGravity.TOP);
 }

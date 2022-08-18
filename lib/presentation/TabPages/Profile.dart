@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:meri_id_operator/model/UserProfile.dart';
+import 'package:meri_id_operator/presentation/auth/FirstPage.dart';
 import 'package:meri_id_operator/utils/global.dart';
 import 'package:meri_id_operator/utils/strings.dart';
 import '../../services/widgets/CustomText.dart';
@@ -21,6 +23,7 @@ class _ProfileState extends State<Profile> {
   bool _language = true;
   bool _loading = true;
 
+
   @override
   void initState() {
     super.initState();
@@ -30,8 +33,13 @@ class _ProfileState extends State<Profile> {
   }
 
   _parent() async {
+    await _getProfileData();
     await _languageFunction();
     await _loadingOff();
+  }
+
+  _getProfileData() async {
+    if(userProfile.userId == "") userProfile = await apiService.getProfile();
   }
 
   _languageFunction() async {
@@ -46,7 +54,6 @@ class _ProfileState extends State<Profile> {
     });
   }
 
-  _logOut() {}
   _routeToFeedsPage() {
     Navigator.pushNamed(context, Feeds.routeNamed);
   }
@@ -82,9 +89,9 @@ class _ProfileState extends State<Profile> {
                           ? StringValues.profile.english
                           : StringValues.profile.hindi),
                       const SizedBox(height: 32),
-                      CustomText.mediumText("Kartikeya Sharma"),
+                      CustomText.mediumText(userProfile.name),
                       const SizedBox(height: 16),
-                      CustomText.mediumText("+917830980280"),
+                      CustomText.mediumText("+91${userProfile.number}"),
                       const SizedBox(height: 32),
                       CustomIconBox(
                           postIcon: Icons.arrow_forward_ios,
@@ -107,7 +114,6 @@ class _ProfileState extends State<Profile> {
                               : StringValues.raiseIssue.hindi,
                           onTap: () {
                             _routeToIssuePage();
-                            print("harsh");
                           }),
                       const SizedBox(height: 32),
                       CustomIconBox(
@@ -135,6 +141,7 @@ class _ProfileState extends State<Profile> {
                           }),
                       const SizedBox(height: 64),
                       CustomButton(
+                          isLoading: isLogOutLoading,
                           postIconSize: 20,
                           postIcon: Icons.arrow_forward,
                           visiblepostIcon: false,
@@ -143,9 +150,19 @@ class _ProfileState extends State<Profile> {
                               : StringValues.logout.hindi,
                           containerColor: Styles.redColor,
                           onTap: () {
-                            _logOut();
+                            setState(() {
+                              isLogOutLoading = true;
+                            });
+                            apiService.logOut();
+                            setState(() {
+                              isLogOutLoading = false;
+                            });
+                            Navigator.popAndPushNamed(
+                                context, FirstPage.routeNamed);
                           }),
                     ])),
           );
   }
+
+  bool isLogOutLoading = false;
 }

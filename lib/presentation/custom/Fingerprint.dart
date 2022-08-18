@@ -65,8 +65,7 @@ Widget buildAuthenticate(BuildContext context) => buildButton(
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
                 builder: (context) => Scaffold(
-                      body:
-                          Center(child: Text("Bhai Chal raha hai fingerprint")),
+                      body:  Center(child: Text("Bhai Chal raha hai fingerprint")),
                     )),
           );
         }
