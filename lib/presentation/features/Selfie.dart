@@ -1,4 +1,3 @@
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -73,13 +72,15 @@ class _SelfieState extends State<Selfie> {
                                 setState(() {
                                   imageLoading = true;
                                 });
-                                File file = (await ImagePicker.pickImage(
-                                    source: ImageSource.camera)) ;
-                                if (file != null) {
+                                XFile? xFile = (await ImagePicker.platform
+                                    .getImage(source: ImageSource.camera));
+                                if (xFile!=null) {
+                                     File file = File(xFile!.path);
                                   String id = DateTime.now()
                                       .millisecondsSinceEpoch
                                       .toString();
-                                  defaultContainerUrl = await uploadFileFirebase.uploadFile(file, id, 'selfies');
+                                  defaultContainerUrl = await uploadFileFirebase
+                                      .uploadFile(file, id, 'selfies');
                                 } else {
                                   errorToast("Please Choose the File", context);
                                 }
