@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:meri_id_operator/model/UserProfile.dart';
 import 'package:meri_id_operator/services/ApiService.dart';
+import 'package:meri_id_operator/services/FirebaseStorage.dart';
 import 'package:meri_id_operator/utils/styles.dart';
 
 import '../services/PreferenceService.dart';
 
 var currentPage = 0;
 var role = "user";
-UserProfile userProfile = UserProfile(name: "", number: "" , userId: "");
+UserProfile userProfile = UserProfile(name: "", number: "", userId: "");
 
 final PreferenceService preferenceService = PreferenceService.getInstance();
 final ApiService apiService = ApiService.getInstance();
+final UploadFileFirebase uploadFileFirebase = UploadFileFirebase.getInstance();
 
 String? validateEmail(String email) {
   if (email == null || email.isEmpty) return 'Required !!!';
@@ -40,7 +42,6 @@ String? requiredString(String value) {
   return null;
 }
 
-
 String? validateOtp(String otp) {
   String? required = requiredString(otp);
   if (required != null) return required;
@@ -48,8 +49,6 @@ String? validateOtp(String otp) {
   RegExp regex = RegExp(r'^[0-9]{1,6}$');
   return (!regex.hasMatch(otp)) ? 'Valid Otp!!' : null;
 }
-
-
 
 Future<bool> checkLanguage() async =>
     (await preferenceService.getLanguage() == null ||
@@ -64,8 +63,8 @@ Widget customizedLeadingIconWidget(String message) {
     ),
     child: Row(
       mainAxisSize: MainAxisSize.min,
-      children:  [
-        Text(message , style: const TextStyle(color: Styles.backgroundColor))
+      children: [
+        Text(message, style: const TextStyle(color: Styles.backgroundColor))
       ],
     ),
   );
@@ -74,5 +73,6 @@ Widget customizedLeadingIconWidget(String message) {
 void errorToast(String message, BuildContext context) {
   var fToast = FToast();
   fToast.init(context);
-  fToast.showToast(child: customizedLeadingIconWidget(message),gravity: ToastGravity.TOP);
+  fToast.showToast(
+      child: customizedLeadingIconWidget(message), gravity: ToastGravity.TOP);
 }
