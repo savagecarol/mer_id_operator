@@ -1,4 +1,5 @@
 import 'package:cron/cron.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,11 +14,13 @@ import 'package:meri_id_operator/presentation/features/Selfie.dart';
 import 'presentation/features/Feeds.dart';
 import 'utils/strings.dart';
 
-void main()  {
-    final cron = Cron();
-    cron.schedule(Schedule.parse('*/15 * * * * *'), () async {
-      print('every 15 seconds Lesgooooooooooooooooooooooooooo');
-    });
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  final cron = Cron();
+  cron.schedule(Schedule.parse('*/15 * * * * *'), () async {
+    print('every 15 seconds Lesgooooooooooooooooooooooooooo');
+  });
   runApp(const MyApp());
 }
 

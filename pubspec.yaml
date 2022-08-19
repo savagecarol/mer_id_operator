@@ -48,6 +48,7 @@ dependencies:
   shared_preferences: null
   url_launcher: ^6.0.0
   firebase_storage:
+  firebase_core:
 
 dev_dependencies:
 

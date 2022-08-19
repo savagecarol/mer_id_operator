@@ -33,7 +33,7 @@ class CustomImageContainer extends StatelessWidget {
                   valueColor: AlwaysStoppedAnimation<Color>(Styles.grayColor),
                 )
               : image != null
-                  ? Image.asset(
+                  ? Image.network(
                       image,
                       fit: BoxFit.fill,
                     )

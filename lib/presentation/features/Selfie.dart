@@ -20,7 +20,8 @@ class _SelfieState extends State<Selfie> {
   bool isLoading = true;
   bool _language = true;
   bool imageLoading = false;
-  String defaultContainerUrl = 'assets/images/logo.png';
+  String defaultContainerUrl =
+      'https://cdn4.iconfinder.com/data/icons/human-resources-34/100/Team-02-512.png';
 
   void initState() {
     super.initState();
@@ -61,8 +62,8 @@ class _SelfieState extends State<Selfie> {
                           height: 32,
                         ),
                         CustomText.xLargeText((_language)
-                            ? StringValues.languageSettings.english
-                            : StringValues.languageSettings.hindi),
+                            ? StringValues.uploadSelfie.english
+                            : StringValues.uploadSelfie.hindi),
                         Padding(
                           padding: const EdgeInsets.all(32),
                           child: CustomImageContainer(
@@ -74,8 +75,8 @@ class _SelfieState extends State<Selfie> {
                                 });
                                 XFile? xFile = (await ImagePicker.platform
                                     .getImage(source: ImageSource.camera));
-                                if (xFile!=null) {
-                                     File file = File(xFile!.path);
+                                if (xFile != null) {
+                                  File file = File(xFile.path);
                                   String id = DateTime.now()
                                       .millisecondsSinceEpoch
                                       .toString();
@@ -86,8 +87,8 @@ class _SelfieState extends State<Selfie> {
                                 }
                               } catch (e) {
                                 errorToast("oops! some error occur", context);
+                                print(e);
                               }
-
                               setState(() {
                                 imageLoading = false;
                               });
