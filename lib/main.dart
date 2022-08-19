@@ -14,7 +14,7 @@ import 'package:meri_id_operator/presentation/features/Selfie.dart';
 import 'presentation/features/Feeds.dart';
 import 'utils/strings.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   final cron = Cron();
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
             primaryColor: Colors.white,
             textTheme:
                 GoogleFonts.montserratTextTheme(Theme.of(context).textTheme)),
-        initialRoute: Selfie.routeNamed,
+        initialRoute: SplashPage.routeNamed,
         routes: {
           SplashPage.routeNamed: (BuildContext context) => SplashPage(),
           FirstPage.routeNamed: (BuildContext context) => FirstPage(),

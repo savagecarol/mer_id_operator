@@ -37,7 +37,6 @@ class _InfoState extends State<Info> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(

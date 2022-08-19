@@ -114,15 +114,12 @@ class ApiService {
     return false;
   }
 
-
   Future<String> getGuildeLines() async {
-    final String url = "$baseUrl/general/guidelines";
+    final String url = "$baseUrl/general/guidelines?role=operator";
     Response res = await get(Uri.parse(url));
     if (res.statusCode == 200) {
       var body = jsonDecode(res.body);
-      if (role == "user") {
-        return body["data"][0]["guideline"];
-      }
+      return body["data"][0]["guideline"];
     }
     return "No GuidelInes";
   }
@@ -136,8 +133,8 @@ class ApiService {
           'Authorization': '$token $authId'
         },
         body: jsonEncode(<String, String>{
-            "date": date,
-            "punch_in": time,
+          "date": date,
+          "punch_in": time,
         }));
 
     if (res.statusCode == 200) {
@@ -147,7 +144,7 @@ class ApiService {
     return false;
   }
 
-    Future<bool> punchOutAttendance(String date, String time) async {
+  Future<bool> punchOutAttendance(String date, String time) async {
     String authId = await PreferenceService.uid;
     final String url = "$baseUrl/auth/issue";
     Response res = await post(Uri.parse(url),
@@ -156,8 +153,8 @@ class ApiService {
           'Authorization': '$token $authId'
         },
         body: jsonEncode(<String, String>{
-            "date": date,
-            "punch_out": time,
+          "date": date,
+          "punch_out": time,
         }));
 
     if (res.statusCode == 200) {
@@ -166,5 +163,4 @@ class ApiService {
     }
     return false;
   }
-  
 }

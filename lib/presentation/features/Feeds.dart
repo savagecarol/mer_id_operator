@@ -43,17 +43,22 @@ class _FeedsState extends State<Feeds> {
     const String url =
         "https://newsapi.org/v2/top-headlines?country=in&q=government&apiKey=b959933666884935be61f74caa1c9a9b";
     Response res = await get(Uri.parse(url));
+    print(res.body);
+    print(res.statusCode);
     if (res.statusCode == 200) {
       var body = jsonDecode(res.body);
       if (body["status"] == 'ok') {
         for (int i = 0; i < body['articles'].length; i++) {
           news.add(News(
-              title: body['articles'][i]['title'],
-              content: body['articles'][i]['content'],
-              description: body['articles'][i]['description'],
-              publishedAt: body['articles'][i]['publishedAt'].toString(),
-              url: body['articles'][i]['url'],
-              urlToImage: body['articles'][i]['urlToImage']));
+              title: body['articles'][i]['title'] ?? "",
+              content: body['articles'][i]['content'] ?? "",
+              description: body['articles'][i]['description'] ?? "",
+              publishedAt: body['articles'][i]['publishedAt'] == null
+                  ? ""
+                  : body['articles'][i]['publishedAt'].toString(),
+              url: body['articles'][i]['url'] ?? "",
+              urlToImage: body['articles'][i]['urlToImage'] ??
+                  "https://image.scoopwhoop.com/q30/s3.scoopwhoop.com/anj2/613ef82b8a373a1f92941ea7/4ec60915-2c14-4f0f-b92f-709663704778.jpg"));
         }
       }
     }
@@ -102,10 +107,8 @@ class _FeedsState extends State<Feeds> {
                             news: news[i],
                             ontap: () async {
                               if (await canLaunchUrl(Uri.parse(news[i].url))) {
-                                   await launchUrl(Uri.parse(news[i].url));
-                          } 
-                             else {
-                              }
+                                await launchUrl(Uri.parse(news[i].url));
+                              } else {}
                             },
                           )
                       ],

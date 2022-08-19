@@ -1,9 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:meri_id_operator/presentation/SplashPage.dart';
 import 'package:meri_id_operator/presentation/auth/PhoneNumber.dart';
-import 'package:meri_id_operator/presentation/custom/Fingerprint.dart';
+import '../../services/LocalAuthApi.dart';
 import '../../services/widgets/CustomText.dart';
 import '../../utils/global.dart';
 import '../../utils/strings.dart';
@@ -52,12 +51,6 @@ class _FirstPageState extends State<FirstPage> {
     Navigator.popAndPushNamed(context, PhoneNumber.routeNamed);
   }
 
-  _fingerPrintTest(BuildContext context) async {
-    buildAvailability(context);
-    buildAuthenticate(context);
-    Navigator.popAndPushNamed(context, SplashPage.routeNamed);
-  }
-
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -82,10 +75,10 @@ class _FirstPageState extends State<FirstPage> {
               Column(
                 children: [
                   Padding(
-                      padding: (!_isTimer && _showFingerPrintButton)
+                      padding: (!_isTimer)
                           ? const EdgeInsets.all(0)
                           : const EdgeInsets.all(0),
-                      child: (!_isTimer && _showFingerPrintButton)
+                      child: (!_isTimer)
                           ? CustomButton(
                               postIcon: Icons.arrow_forward_ios,
                               visiblepostIcon: false,
@@ -94,7 +87,16 @@ class _FirstPageState extends State<FirstPage> {
                                   : StringValues.fingerprint.hindi,
                               containerColor: Styles.redColor,
                               onTap: () async {
-                                await _fingerPrintTest(context);
+                                print("yo");
+                                final isAuthenticated =
+                                    await LocalAuthApi.authenticate();
+                                if (isAuthenticated) {
+                                  print("yes");
+                                  Navigator.popAndPushNamed(
+                                      context, SplashPage.routeNamed);
+                                } else {
+                                  print("no");
+                                }
                               })
                           : Container()),
                   Padding(
