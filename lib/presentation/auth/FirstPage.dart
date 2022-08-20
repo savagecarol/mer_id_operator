@@ -87,15 +87,18 @@ class _FirstPageState extends State<FirstPage> {
                                   : StringValues.fingerprint.hindi,
                               containerColor: Styles.redColor,
                               onTap: () async {
-                                print("yo");
+                                // print("yo");
                                 final isAuthenticated =
                                     await LocalAuthApi.authenticate();
+                                final get = await LocalAuthApi.getBiometrics();
+                                final have = await LocalAuthApi.hasBiometrics();
+                                print(isAuthenticated);
                                 if (isAuthenticated) {
-                                  print("yes");
+                                  // print("yes");
                                   Navigator.popAndPushNamed(
                                       context, SplashPage.routeNamed);
                                 } else {
-                                  print("no");
+                                  // print("no");
                                 }
                               })
                           : Container()),

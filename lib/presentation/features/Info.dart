@@ -3,6 +3,7 @@ import '../../services/widgets/CustomText.dart';
 import '../../utils/global.dart';
 import '../../utils/strings.dart';
 import '../../utils/styles.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 class Info extends StatefulWidget {
   static const String routeNamed = 'Info';
@@ -66,8 +67,15 @@ class _InfoState extends State<Info> {
                         height: 64,
                       ),
                       Center(
-                        child: CustomText.smallText(value),
-                      ),
+                          child: Html(
+                        data: value,
+                        style: {
+                          "p": Style(
+                            color: Styles.blackColor,
+                            fontSize: FontSize.xLarge,
+                          )
+                        },
+                      )),
                     ],
                   ),
                 ),

@@ -1,4 +1,4 @@
-import 'package:cron/cron.dart';
+// import 'package:cron/cron.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,10 +17,10 @@ import 'utils/strings.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  final cron = Cron();
-  cron.schedule(Schedule.parse('*/15 * * * * *'), () async {
-    print('every 15 seconds Lesgooooooooooooooooooooooooooo');
-  });
+  // final cron = Cron();
+  // cron.schedule(Schedule.parse('*/15 * * * * *'), () async {
+  //   print('every 15 seconds Lesgooooooooooooooooooooooooooo');
+  // });
   runApp(const MyApp());
 }
 
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
             primaryColor: Colors.white,
             textTheme:
                 GoogleFonts.montserratTextTheme(Theme.of(context).textTheme)),
-        initialRoute: FirstPage.routeNamed,
+        initialRoute: SplashPage.routeNamed,
         routes: {
           SplashPage.routeNamed: (BuildContext context) => SplashPage(),
           FirstPage.routeNamed: (BuildContext context) => FirstPage(),
@@ -50,6 +50,7 @@ class MyApp extends StatelessWidget {
           Info.routeNamed: (BuildContext context) => Info(),
           PhoneNumber.routeNamed: (BuildContext context) => PhoneNumber(),
           Selfie.routeNamed: (BuildContext context) => Selfie(),
+          QRpage.routeNamed: (BuildContext context) => QRpage(),
         });
   }
 }
