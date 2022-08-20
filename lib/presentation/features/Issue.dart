@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../services/widgets/CustomText.dart';
+import '../../utils/global.dart';
 import '../../utils/strings.dart';
 import '../../utils/styles.dart';
 import '../custom/CustomButton.dart';
@@ -13,6 +14,23 @@ class Issue extends StatefulWidget {
 }
 
 class _IssueState extends State<Issue> {
+  bool _language = true;
+  void initState() {
+    super.initState();
+    _parent();
+  }
+
+  _parent() async {
+    await _languageFunction();
+  }
+
+  _languageFunction() async {
+    bool val = await checkLanguage();
+    setState(() {
+      _language = val;
+    });
+  }
+
   final List<String> items = [
     'Related Government',
     'Releated App ',
@@ -110,12 +128,11 @@ class _IssueState extends State<Issue> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomText.xLargeText("Raise Issue"
-
-                      // (_language)
-                      //     ? StringValues.raiseIssue.english
-                      //     : StringValues.raiseIssue.hindi,
-                      ),
+                  CustomText.xLargeText(
+                    (_language)
+                        ? StringValues.raiseIssue.english
+                        : StringValues.raiseIssue.hindi,
+                  ),
                   const SizedBox(
                     height: 32,
                   ),
@@ -146,11 +163,9 @@ class _IssueState extends State<Issue> {
                     padding: const EdgeInsets.symmetric(vertical: 32),
                     child: CustomButton(
                         postIcon: Icons.arrow_forward_ios,
-                        labelText: "Issue"
-                        //   (_language)
-                        // ? StringValues.issue.english
-                        // : StringValues.issue.hindi,
-                        ,
+                        labelText: (_language)
+                            ? StringValues.issue.english
+                            : StringValues.issue.hindi,
                         containerColor: Styles.redColor,
                         onTap: () {
                           _raiseIssue();

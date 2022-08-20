@@ -35,16 +35,69 @@ abstract class StringValues {
       Language(english: "Enter Number Again", hindi: "फिर से नंबर डालें");
   static Language fingerprint =
       Language(english: "Fingerprint", hindi: "फिंगर प्रिंट");
-  static Language issue = Language(english: "Issue", hindi: "मुद्दा");
+  static Language issue = Language(english: "Issue", hindi: "दरज करे");
   static Language eng = Language(english: "English", hindi: "अंग्रेज़ी");
   static Language hin = Language(english: "Hindi", hindi: "हिन्दी");
   static Language scanCode =
       Language(english: "Scan Code", hindi: "कोड स्कैन करें");
 
   static Language loginByMobileNumber = Language(
-      english: "Login by Mobile Number",
-      hindi: "मोबाइल नंबर से लॉग इन करें");
+      english: "Login by Mobile Number", hindi: "मोबाइल नंबर से लॉग इन करें");
   static Language uploadSelfie =
       Language(english: "UPLOAD SELFIE", hindi: "सेल्फी अपलोड करें");
   //  3 more
+  static Language signInByMobileNumber = Language(
+      english: "Sign in by mobile number",
+      hindi: "मोबाइल नंबर द्वारा साइन इन करें");
+  static Language chooseKYCJourney =
+      Language(english: "Choose Kyc Journey", hindi: "Kyc का सफ़र तय करे");
+  static Language KYCJourney1 =
+      Language(english: "Kyc Journey 1", hindi: "Kyc सफ़र 1");
+  static Language KYCJourney2 =
+      Language(english: "Kyc Journey 1", hindi: "Kyc सफ़र 2");
+  static Language videoKYC =
+      Language(english: "Video KYC", hindi: "वीडियो KYC");
+  static Language uploadPANCard =
+      Language(english: "Upload PAN Card", hindi: "पैन अपलोड");
+  static Language uploadAadhar =
+      Language(english: "Upload Aadhar Card", hindi: "आधार अपलोड");
+  static Language uploadOtherDocuments = Language(
+      english: "Upload Other Documents", hindi: "अन्य दस्तावेज अपलोड करें");
+  static Language proceed = Language(english: "Proceed", hindi: "आगे बढ़ें");
+  static Language checkKYCStatus =
+      Language(english: "Check KYC Status", hindi: "KYC की स्थिति जाँचिए");
+  static Language addBookings =
+      Language(english: "Add Bookings", hindi: "बुकिंग करें");
+  static Language forHowMany = Language(
+      english: "For how many people you want to do booking ?",
+      hindi: "आप कितने लोगों के लिए बुकिंग करना चाहते हैं?");
+  static Language numberOfPeople =
+      Language(english: "Number of People", hindi: "लोगों की संख्या");
+  static Language name = Language(english: "Name", hindi: "नाम");
+  static Language reason = Language(english: "Reason", hindi: "कारण");
+  static Language address = Language(english: "Address", hindi: "पता");
+  static Language chooseYourLocation =
+      Language(english: "Choose your location", hindi: "अपना स्थान चुनें");
+  static Language homeStreet =
+      Language(english: "Home/Street", hindi: "घर/सड़क");
+  static Language area =
+      Language(english: "Area/locality/Society", hindi: "क्षेत्र/इलाका");
+  static Language cityDistrict =
+      Language(english: "City/District", hindi: "शहर/जिला");
+  static Language state = Language(english: "State", hindi: "राज्य");
+  static Language pincode = Language(english: "Pincode", hindi: "पिन कोड");
+  static Language chooseTimeSlot =
+      Language(english: "Choose Time Slot", hindi: "समय स्लॉट चुनें");
+  static Language qrCodeofBooking =
+      Language(english: "QR code of booking", hindi: "बुकिंग का QR कोड");
+  static Language goToHomePage =
+      Language(english: "Go to Home Page", hindi: "होमपेज पर जाये");
+  static Language chooseDay =
+      Language(english: "Choose Day", hindi: "दिन चुनें");
+  static Language enterDate =
+      Language(english: "Enter Date", hindi: "तिथि दर्ज करें");
+  static Language goBack = Language(english: "Enter Date", hindi: "पीछे चले");
+  static Language record = Language(english: "Record", hindi: "रिकॉर्ड करे");
+  static Language uploadAgain =
+      Language(english: "Upload Again", hindi: "दोबारा अपलोड करें");
 }

@@ -17,7 +17,7 @@
         tools:replace="android:label"
         android:label="meri_id_operator"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
           <meta-data android:name = "com.google.android.geo.API_KEY"
               android:value="AIzaSyC71uktesLZfNFqlMcKRgJFdNiyZoug9o0"/>
         <activity
