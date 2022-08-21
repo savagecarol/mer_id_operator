@@ -36,9 +36,9 @@ class _IssueState extends State<Issue> {
   }
 
   final List<String> items = [
-    'Related Government',
-    'Releated App ',
-    'Related UI'
+    'Government Related',
+    'App Releated',
+    'UI Related'
   ];
 
   String? selectedValue;
@@ -192,9 +192,9 @@ class _IssueState extends State<Issue> {
                             return;
                           }
                           try {
-                              await apiService.raiseIssue(selectedValue!, issue);
-                              successToast("Send SuccessFully", context);
-                              Navigator.pushNamed(context, SplashPage.routeNamed);
+                            await apiService.raiseIssue(selectedValue!, issue);
+                            successToast("Send SuccessFully", context);
+                            Navigator.pushNamed(context, SplashPage.routeNamed);
                           } catch (e) {
                             print(e);
                             errorToast("Oops! Something Went Wrong", context);
