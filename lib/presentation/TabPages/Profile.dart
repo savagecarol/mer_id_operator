@@ -26,8 +26,6 @@ class _ProfileState extends State<Profile> {
   void initState() {
     super.initState();
     _parent();
-    _languageFunction();
-    _loadingOff();
   }
 
   _parent() async {
@@ -46,7 +44,6 @@ class _ProfileState extends State<Profile> {
   }
 
   _loadingOff() {
-    if (!mounted) return;
     setState(() {
       _loading = false;
     });
