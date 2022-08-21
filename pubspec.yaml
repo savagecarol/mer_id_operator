@@ -40,7 +40,7 @@ dependencies:
   http: ^0.13.3
   image_picker: ^0.8.5
   kommunicate_flutter: ^1.5.0
-  local_auth:
+  local_auth: ^2.1.1
   location: ^4.4.0
   path_provider: ^2.0.11
   provider: ^6.0.3

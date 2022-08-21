@@ -21,7 +21,7 @@
           <meta-data android:name = "com.google.android.geo.API_KEY"
               android:value="AIzaSyC71uktesLZfNFqlMcKRgJFdNiyZoug9o0"/>
         <activity
-            android:name=".MainActivity"
+            android:name="io.flutter.embedding.android.FlutterFragmentActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
