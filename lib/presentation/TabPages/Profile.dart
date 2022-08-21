@@ -22,7 +22,6 @@ class _ProfileState extends State<Profile> {
   bool _language = true;
   bool _loading = true;
 
-
   @override
   void initState() {
     super.initState();
@@ -152,6 +151,7 @@ class _ProfileState extends State<Profile> {
                             setState(() {
                               isLogOutLoading = true;
                             });
+                            currentPage = 0;
                             apiService.logOut();
                             setState(() {
                               isLogOutLoading = false;

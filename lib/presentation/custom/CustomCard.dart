@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:meri_id_operator/presentation/custom/CustomButton.dart';
 import 'package:meri_id_operator/presentation/custom/CustomLocation.dart';
 import 'package:meri_id_operator/utils/styles.dart';
 
@@ -18,9 +20,11 @@ class CustomCard extends StatelessWidget {
   final double lat;
   final double long;
   final Function onMapClick;
+  final bool isStart;
 
   const CustomCard(
       {this.booking_id = "12345",
+      this.isStart = true,
       this.date = "Date",
       this.time = "Time",
       this.name = "Person Name",
@@ -39,13 +43,6 @@ class CustomCard extends StatelessWidget {
         onTap();
       },
       child: Container(
-        // decoration: BoxDecoration(
-        //     color: Styles.grayColor,
-        //     borderRadius: BorderRadius.circular(10),
-        //     boxShadow: const [
-        //       BoxShadow(
-        //           color: Styles.grayColor, blurRadius: 2, offset: Offset(0, 0))
-        //     ]),
         margin: const EdgeInsets.only(bottom: 16),
         child: Card(
           elevation: 10,
@@ -59,16 +56,53 @@ class CustomCard extends StatelessWidget {
                 const EdgeInsets.only(top: 16, bottom: 8, right: 16, left: 16),
             child: Column(
               children: [
+                  Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomText.mediumText(booking_id),
+                   
+                    InkWell(
+                        onTap: () {
+                          makeCall();
+                        },
+                        child: 
+                          Container(
+                            decoration: BoxDecoration(
+                              color: (isStart) ? Colors.blue[400] : Colors.green,
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            padding: const EdgeInsets.symmetric(horizontal: 12 , vertical: 4),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                              Text( (isStart) ? "Start" : "Call" ,
+                            style: GoogleFonts.montserrat(
+                              textStyle: const TextStyle(
+                            fontSize: 16,
+                            color: Styles.backgroundColor,
+                            fontWeight: FontWeight.w500))),
+                              const Icon(Icons.arrow_forward, color:  Styles.backgroundColor,)         
+                              ],
+                            )
+                          )
+                         ),
+                  ],
+                
+                ),
+                 const SizedBox(
+                  height: 8,
+                ),
+
                 InkWell(
                   onTap: () {
                     onMapClick();
                   },
                   child: SizedBox(
-                    height: 200,
+                    height: 220,
                     child: CustomLocation(
                       lat: lat,
                       long: long,
-                      zoom: 12,
+                      zoom: 8,
                     ),
                   ),
                 ),
@@ -81,20 +115,16 @@ class CustomCard extends StatelessWidget {
                     Row(
                       children: [
                         // profile pic
-                        Icon(Icons.person),
+                        const Icon(Icons.person),
                         // Name
                         CustomText.timeText(name),
                       ],
                     ),
                     Row(
                       children: [
-                        Icon(Icons.group),
+                        const Icon(Icons.group),
                         CustomText.timeText(' ' + persons.toString()),
-                        CustomText.timeText(" Person"
-                            //     (_language)
-                            // ? StringValues.person.english
-                            // : StringValues.person.hindi,
-                            ),
+                        CustomText.timeText(" Person"),
                       ],
                     ),
                   ],
@@ -105,29 +135,12 @@ class CustomCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CustomText.timeText("03-july-2022"),
-                    CustomText.timeText("4:00pm to 5:00 pm"),
+                    CustomText.timeText(date),
+                    CustomText.timeText(time),
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        CustomText.timeText("Booking ID : "
-                            //     (_language)
-                            // ? StringValues.bookingID.english
-                            // : StringValues.bookingID.hindi,
-                            ),
-                        CustomText.timeText(booking_id),
-                      ],
-                    ),
-                    IconButton(
-                        onPressed: () {
-                          makeCall();
-                        },
-                        icon: Icon(Icons.call)),
-                  ],
+                 const SizedBox(
+                  height: 4,
                 ),
               ],
             ),
@@ -137,17 +150,3 @@ class CustomCard extends StatelessWidget {
     );
   }
 }
-
-
-
-//  IconButton(
-//                         onPressed: () {
-//                           makeCall();
-//                         },
-//                         icon: Icon(Icons.call)),
-//                     Row(
-//                       children: [
-//                         Icon(Icons.access_time),
-//                         CustomText.timeText(time),
-//                       ],
-//                     )

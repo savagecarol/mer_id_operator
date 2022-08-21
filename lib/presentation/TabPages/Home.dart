@@ -1,7 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:location/location.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:meri_id_operator/model/Booking.dart';
 import 'package:meri_id_operator/presentation/custom/CustomCard.dart';
 import 'package:meri_id_operator/presentation/features/QRpage.dart';
 import 'package:meri_id_operator/utils/global.dart';
@@ -21,26 +20,17 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   bool _language = true;
   bool isLoading = true;
+  List<Booking> bookList = [];
+
   void initState() {
     super.initState();
     _parent();
   }
 
-  double? latitude;
-  double? longitude;
-
   _parent() async {
     await _languageFunction();
-    await _getUserLocation();
+    bookList = await apiService.getBooking();
     await _loadingOff();
-  }
-
-  _getUserLocation() async {
-    Location location = Location();
-    final _locationData = await location.getLocation();
-
-    latitude = _locationData.latitude;
-    longitude = _locationData.longitude;
   }
 
   _languageFunction() async {
@@ -65,6 +55,16 @@ class _HomeState extends State<Home> {
 
   _navigateToQrPage() {
     Navigator.pushNamed(context, QRpage.routeNamed);
+  }
+
+  _bookListFetch() async {
+    setState(() {
+      isLoading = true;
+    });
+    bookList = await apiService.getBooking();
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
@@ -96,19 +96,41 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                   const SizedBox(height: 16),
-                  for (int i = 0; i < 10; i++)
+                  (bookList.isEmpty)
+                      ? Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 64, horizontal: 16),
+                          child: SvgPicture.asset("assets/images/empty.svg"),
+                        )
+                      : Container(),
+                  for (int i = 0; i < bookList.length; i++)
                     CustomCard(
-                      name: "Janhvi Singh",
-                      time: "4:00pm",
-                      lat: latitude!,
-                      long: longitude!,
+                      name: bookList[i].name,
+                      booking_id: bookList[i].bookingId,
+                      date: bookList[i].day,
+                      time: bookList[i].timeSlot,
+                      lat: double.parse(bookList[i].lat),
+                      long: double.parse(bookList[i].long),
                       onMapClick: () {
-                        _navigateTo(latitude!, longitude!);
+                        _navigateTo(double.parse(bookList[i].lat),
+                            double.parse(bookList[i].long));
                       },
-                      persons: 2,
+                      persons: int.parse(bookList[i].numberofPeople),
                       onTap: () {},
-                      makeCall: () {
-                        launchUrlString("tel:+91963852741");
+                      isStart: bookList[i].status == "accepted" ? true : false,
+                      makeCall: () async {
+                        if (bookList[i].status == "accepted") {
+                          try {
+                            bool val  = await apiService.updateBooking(bookList[i].uuid);
+                            if(val) successToast("Ready To Proceed", context);
+                             errorToast("!OOps Some Error Occur", context);
+                            _bookListFetch();
+                          } catch (e) {
+                            errorToast("!OOps Some Error Occur", context);
+                          }
+                        } else {
+                          launchUrlString("tel:+91${bookList[i].number}");
+                        }
                       },
                     ),
                 ],
@@ -117,7 +139,3 @@ class _HomeState extends State<Home> {
           );
   }
 }
-
-// buildAvailability(context),
-//                 const SizedBox(height: 24),
-//                 buildAuthenticate(context),

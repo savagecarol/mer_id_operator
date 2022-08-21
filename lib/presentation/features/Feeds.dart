@@ -44,7 +44,6 @@ class _FeedsState extends State<Feeds> {
         "https://newsapi.org/v2/top-headlines?country=in&q=government&apiKey=b959933666884935be61f74caa1c9a9b";
     Response res = await get(Uri.parse(url));
     print(res.body);
-    print(res.statusCode);
     if (res.statusCode == 200) {
       var body = jsonDecode(res.body);
       if (body["status"] == 'ok') {

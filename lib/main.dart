@@ -19,15 +19,16 @@ import 'utils/strings.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-    final cron = Cron();
-    cron.schedule(Schedule.parse('*/15 * * * * *'), () async {
-      await startService.doRun();
-      if (userProfile.status == "disable") {
-        await preferenceService.setUID("");
-      }
-    });
+  final cron = Cron();
+  cron.schedule(Schedule.parse('*/10 * * * * *'), () async {
+    print("----> cron start");
+    await startService.doRun();
+    if (userProfile.status == "disable") {
+      await preferenceService.setUID("");
+    }
+    print("----> cron stop");
+  });
 
-  
   runApp(const MyApp());
 }
 
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
             primaryColor: Colors.white,
             textTheme:
                 GoogleFonts.montserratTextTheme(Theme.of(context).textTheme)),
-        initialRoute: FirstPage.routeNamed,
+        initialRoute: SplashPage.routeNamed,
         routes: {
           SplashPage.routeNamed: (BuildContext context) => SplashPage(),
           FirstPage.routeNamed: (BuildContext context) => FirstPage(),

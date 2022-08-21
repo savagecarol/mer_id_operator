@@ -50,6 +50,7 @@ dependencies:
   firebase_storage:
   firebase_core:
   flutter_html: ^2.0.0
+  intl: ^0.17.0
 
 dev_dependencies:
 
