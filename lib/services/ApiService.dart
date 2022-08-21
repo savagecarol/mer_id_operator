@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:http/http.dart';
 import 'package:meri_id_operator/model/UserProfile.dart';
 import 'package:meri_id_operator/services/PreferenceService.dart';
@@ -50,6 +49,7 @@ class ApiService {
 
   Future<bool> currentStatus(String phoneNumber, String otp) async {
     String authId = await PreferenceService.uid;
+    print(authId);
     final String url = "$baseUrl/auth/current-status";
     Response res = await get(
       Uri.parse(url),
@@ -70,7 +70,7 @@ class ApiService {
     return true;
   }
 
-  Future<UserProfile> getProfile() async {
+  Future<void> getProfile() async {
     String authId = await PreferenceService.uid;
     final String url = "$baseUrl/auth/profile";
 
@@ -84,29 +84,33 @@ class ApiService {
 
     if (res.statusCode == 200) {
       var body = jsonDecode(res.body);
-      return UserProfile(
+      userProfile = UserProfile(
           name: body['data']['name'],
           number: body['data']['phone_number'],
-          userId: body['data']['user']);
+          userId: body['data']['user'],
+          status: body['data']['status'],
+          attendance: body['data']['attendance']);
+    } else {
+      userProfile = UserProfile(
+          name: "User",
+          number: "7830980xxx",
+          userId: "123",
+          status: "absent",
+          attendance: "absent");
     }
-    return UserProfile(name: "", number: "", userId: "");
   }
 
   Future<bool> raiseIssue(String title, String description) async {
-    String authId = await PreferenceService.uid;
+    String? authId = await preferenceService.getUID();
+    print(authId);
     final String url = "$baseUrl/auth/issue";
-
     Response res = await post(Uri.parse(url),
         headers: {
           'content-type': 'application/json',
           'Authorization': '$token $authId'
         },
-        body: jsonEncode(<String, String>{
-          'title': title,
-          'description': description,
-          'user': userProfile.userId
-        }));
-
+        body: jsonEncode(
+            <String, String>{'title': title, 'description': description}));
     if (res.statusCode == 200) {
       var body = jsonDecode(res.body);
       return true;

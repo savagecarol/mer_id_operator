@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:meri_id_operator/presentation/SplashPage.dart';
 import '../../services/widgets/CustomText.dart';
 import '../../utils/global.dart';
 import '../../utils/strings.dart';
@@ -15,6 +16,9 @@ class Issue extends StatefulWidget {
 
 class _IssueState extends State<Issue> {
   bool _language = true;
+  String issue = "";
+  bool isButtonLoading = false;
+
   void initState() {
     super.initState();
     _parent();
@@ -36,6 +40,7 @@ class _IssueState extends State<Issue> {
     'Releated App ',
     'Related UI'
   ];
+
   String? selectedValue;
   Widget dropDownWidget() {
     return DropdownButtonHideUnderline(
@@ -109,7 +114,6 @@ class _IssueState extends State<Issue> {
     );
   }
 
-  _raiseIssue() {}
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -148,6 +152,7 @@ class _IssueState extends State<Issue> {
                         color: Styles.grayColor,
                       ),
                       child: TextField(
+                          onChanged: (value) => {issue = value},
                           keyboardType: TextInputType.multiline,
                           minLines: 3,
                           maxLines: null,
@@ -162,13 +167,43 @@ class _IssueState extends State<Issue> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 32),
                     child: CustomButton(
+                        isLoading: isButtonLoading,
                         postIcon: Icons.arrow_forward_ios,
                         labelText: (_language)
                             ? StringValues.issue.english
                             : StringValues.issue.hindi,
                         containerColor: Styles.redColor,
-                        onTap: () {
-                          _raiseIssue();
+                        onTap: () async {
+                          setState(() {
+                            isButtonLoading = true;
+                          });
+                          if (selectedValue == null) {
+                            errorToast("Please Choose the tille", context);
+                            setState(() {
+                              isButtonLoading = false;
+                            });
+                            return;
+                          }
+                          if (issue == "") {
+                            errorToast("Please Type Issue", context);
+                            setState(() {
+                              isButtonLoading = false;
+                            });
+                            return;
+                          }
+                          try {
+                              await apiService.raiseIssue(selectedValue!, issue);
+                              successToast("Send SuccessFully", context);
+                              Navigator.pushNamed(context, SplashPage.routeNamed);
+                          } catch (e) {
+                            print(e);
+                            errorToast("Oops! Something Went Wrong", context);
+                          }
+                          setState(() {
+                            selectedValue = null;
+                            issue = "";
+                            isButtonLoading = false;
+                          });
                         }),
                   )
                 ],

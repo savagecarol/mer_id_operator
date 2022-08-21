@@ -57,69 +57,66 @@ class _FirstPageState extends State<FirstPage> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(32),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              const SizedBox(height: 20),
-              Column(
-                children: [
-                  Image.asset(
-                    Styles.STATIC_LOGO_IMAGE,
-                    height: 200,
-                    width: 200,
-                  ),
-                  CustomText.xLargeText("मेरी ID"),
-                ],
-              ),
-              SizedBox(height: (_showFingerPrintButton) ? 120 : 80),
-              Column(
-                children: [
-                  Padding(
-                      padding: (!_isTimer)
-                          ? const EdgeInsets.all(0)
-                          : const EdgeInsets.all(0),
-                      child: (!_isTimer)
-                          ? CustomButton(
-                              postIcon: Icons.arrow_forward_ios,
-                              visiblepostIcon: false,
-                              labelText: (_language)
-                                  ? StringValues.fingerprint.english
-                                  : StringValues.fingerprint.hindi,
-                              containerColor: Styles.redColor,
-                              onTap: () async {
-                                // print("yo");
-                                final isAuthenticated =
-                                    await LocalAuthApi.authenticate();
-                                final get = await LocalAuthApi.getBiometrics();
-                                final have = await LocalAuthApi.hasBiometrics();
-                                print(isAuthenticated);
-                                if (isAuthenticated) {
-                                  // print("yes");
-                                  Navigator.popAndPushNamed(
-                                      context, SplashPage.routeNamed);
-                                } else {
-                                  // print("no");
-                                }
-                              })
-                          : Container()),
-                  Padding(
-                      padding: const EdgeInsets.only(top: 32),
-                      child: (_isTimer == false)
-                          ? CustomButton(
-                              postIcon: Icons.arrow_forward_ios,
-                              visiblepostIcon: false,
-                              labelText: (_language)
-                                  ? StringValues.loginByMobileNumber.english
-                                  : StringValues.loginByMobileNumber.hindi,
-                              containerColor: Styles.redColor,
-                              onTap: () {
-                                route();
-                              })
-                          : Container()),
-                  const SizedBox(height: 20),
-                ],
-              ),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                const SizedBox(height: 20),
+                Column(
+                  children: [
+                    Image.asset(
+                      Styles.STATIC_LOGO_IMAGE,
+                      height: 200,
+                      width: 200,
+                    ),
+                    CustomText.xLargeText("मेरी ID"),
+                  ],
+                ),
+                SizedBox(height: (_showFingerPrintButton) ? 200 : 280),
+                Column(
+                  children: [
+                    Padding(
+                        padding: (!_isTimer && _showFingerPrintButton)
+                            ? const EdgeInsets.all(0)
+                            : const EdgeInsets.all(0),
+                        child: (!_isTimer && _showFingerPrintButton)
+                            ? CustomButton(
+                                postIcon: Icons.arrow_forward_ios,
+                                visiblepostIcon: false,
+                                labelText: (_language)
+                                    ? StringValues.fingerprint.english
+                                    : StringValues.fingerprint.hindi,
+                                containerColor: Styles.redColor,
+                                onTap: () async {
+                                  final isAuthenticated =
+                                      await LocalAuthApi.authenticate();
+                                  print(isAuthenticated);
+                                  if (isAuthenticated) {
+                                    Navigator.popAndPushNamed(
+                                        context, SplashPage.routeNamed);
+                                  } else {
+                                    errorToast("Please Try Again", context);
+                                  }
+                                })
+                            : Container()),
+                    Padding(
+                        padding: const EdgeInsets.only(top: 32),
+                        child: (_isTimer == false)
+                            ? CustomButton(
+                                postIcon: Icons.arrow_forward_ios,
+                                visiblepostIcon: false,
+                                labelText: (_language)
+                                    ? StringValues.loginByMobileNumber.english
+                                    : StringValues.loginByMobileNumber.hindi,
+                                containerColor: Styles.redColor,
+                                onTap: () {
+                                  route();
+                                })
+                            : Container()),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

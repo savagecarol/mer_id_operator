@@ -64,7 +64,7 @@ class _InfoState extends State<Info> {
                             : StringValues.guidelines.hindi,
                       ),
                       const SizedBox(
-                        height: 64,
+                        height: 16,
                       ),
                       Center(
                           child: Html(
@@ -72,7 +72,7 @@ class _InfoState extends State<Info> {
                         style: {
                           "p": Style(
                             color: Styles.blackColor,
-                            fontSize: FontSize.medium,
+                            fontSize: FontSize.large,
                           )
                         },
                       )),

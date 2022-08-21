@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:meri_id_operator/presentation/custom/CustomButton.dart';
-import 'package:meri_id_operator/presentation/custom/CustomCard.dart';
 import 'package:meri_id_operator/presentation/custom/CustomLocation.dart';
 import 'package:meri_id_operator/utils/global.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../services/widgets/CustomText.dart';
 import '../../utils/strings.dart';
@@ -44,6 +42,7 @@ class _AttendanceState extends State<Attendance> {
       isLoading = false;
     });
   }
+
 
   _getUserLocation() async {
     Location location = Location();
@@ -92,22 +91,5 @@ class _AttendanceState extends State<Attendance> {
               )
             ],
           );
-
-    // : Column(
-    //   crossAxisAlignment: CrossAxisAlignment.start,
-    //   children: [
-    //     Column(
-    //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-    //       crossAxisAlignment: CrossAxisAlignment.start,
-    //       children: [
-    //         Padding(
-    //           padding: const EdgeInsets.all(32),
-    //           child: CustomText.xLargeText("Attendance"),
-    //         ),
-    //         Container(child: CustomLocation(lat: latitude!, long: longitude!) , height: 300,),
-    //       ],
-    //     ),
-    //   ],
-    // );
   }
 }

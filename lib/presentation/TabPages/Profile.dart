@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meri_id_operator/model/UserProfile.dart';
 import 'package:meri_id_operator/presentation/auth/FirstPage.dart';
 import 'package:meri_id_operator/utils/global.dart';
 import 'package:meri_id_operator/utils/strings.dart';
@@ -39,7 +38,7 @@ class _ProfileState extends State<Profile> {
   }
 
   _getProfileData() async {
-    if(userProfile.userId == "") userProfile = await apiService.getProfile();
+    await apiService.getProfile();
   }
 
   _languageFunction() async {

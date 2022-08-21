@@ -3,17 +3,19 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:meri_id_operator/model/UserProfile.dart';
 import 'package:meri_id_operator/services/ApiService.dart';
 import 'package:meri_id_operator/services/FirebaseStorage.dart';
+import 'package:meri_id_operator/services/StartService.dart';
 import 'package:meri_id_operator/utils/styles.dart';
 
 import '../services/PreferenceService.dart';
 
 var currentPage = 0;
 var role = "user";
-UserProfile userProfile = UserProfile(name: "", number: "", userId: "");
+UserProfile userProfile = UserProfile(name: "", number: "", userId: "", status: "absent");
 
 final PreferenceService preferenceService = PreferenceService.getInstance();
 final ApiService apiService = ApiService.getInstance();
 final UploadFileFirebase uploadFileFirebase = UploadFileFirebase.getInstance();
+final StartService startService = StartService.getInstance();
 
 String? validateEmail(String email) {
   if (email == null || email.isEmpty) return 'Required !!!';
@@ -76,3 +78,30 @@ void errorToast(String message, BuildContext context) {
   fToast.showToast(
       child: customizedLeadingIconWidget(message), gravity: ToastGravity.TOP);
 }
+
+
+
+Widget successIconWidget(String message) {
+  return Container(
+    padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(25.0),
+      color: Color.fromARGB(255, 18, 191, 222),
+    ),
+    child: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(message, style: const TextStyle(color: Styles.backgroundColor))
+      ],
+    ),
+  );
+}
+
+
+void successToast(String message, BuildContext context) {
+  var fToast = FToast();
+  fToast.init(context);
+  fToast.showToast(
+      child: successIconWidget(message), gravity: ToastGravity.TOP);
+}
+

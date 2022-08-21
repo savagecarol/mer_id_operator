@@ -1,5 +1,7 @@
+import 'package:cron/cron.dart';
 import 'package:flutter/material.dart';
 import 'package:kommunicate_flutter/kommunicate_flutter.dart';
+import 'package:meri_id_operator/presentation/auth/FirstPage.dart';
 
 import '../utils/global.dart';
 import '../utils/styles.dart';
@@ -26,6 +28,25 @@ class _SplashPageState extends State<SplashPage> {
         return const Home();
     }
   }
+
+    @override
+  void initState() {
+    super.initState();
+    cronJob();
+  }
+
+
+Future<void>  cronJob() async{
+  final cron = Cron();
+  cron.schedule(Schedule.parse('*/15 * * * * *'), () async {
+    await startService.doRun();
+      if (userProfile.status == "disable") {
+        await preferenceService.setUID("");
+        Navigator.pushNamed(context, FirstPage.routeNamed);
+      }
+    });
+}
+
 
   _getBottomBar() {
     return Container(
