@@ -15,39 +15,32 @@ class StartService {
   final String role = 'operator';
   final String token = 'Token';
 
-  _getUserLocation() async {
+  Future<void> sendlatLong() async {
     Location location = Location();
     final _locationData = await location.getLocation();
-    return [_locationData.latitude, _locationData.longitude];
-  }
-
-  Future<void> sendlatLong() async {
-    String? authId = await PreferenceService.uid;
-    List<Double?> loc = await _getUserLocation();
-
-    final String url = "$baseUrl/auth/issue";
-    Response res = await post(Uri.parse(url),
+    String? authId = await preferenceService.getUID();
+    final String url = "$baseUrl/auth/operator/location/update/${userProfile.uuid}";
+    Response res = await put(Uri.parse(url),
         headers: {
           'content-type': 'application/json',
           'Authorization': '$token $authId'
         },
         body: jsonEncode(<String, String>{
-          'lat': loc[0].toString(),
-          'long': loc[1].toString(),
-          'user': userProfile.userId
+          'lat': _locationData.latitude.toString(),
+          'long': _locationData.longitude.toString()
         }));
+    print(res.statusCode);
   }
 
   Future<void> doRun() async {
     String? uid = await preferenceService.getUID();
-      if (uid == null || uid == "") {
-        return;
-      } else {
-        await apiService.getProfile();
-        if (userProfile.status != "absent") {
-          await sendlatLong();
+    if (uid == null || uid == "") {
+      return;
+    } else {
+      await apiService.getProfile();
+      if (userProfile.attendance == "present") {
+        await sendlatLong();
       }
     }
   }
-
 }

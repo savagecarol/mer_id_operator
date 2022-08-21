@@ -19,6 +19,15 @@ import 'utils/strings.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+    final cron = Cron();
+    cron.schedule(Schedule.parse('*/15 * * * * *'), () async {
+      await startService.doRun();
+      if (userProfile.status == "disable") {
+        await preferenceService.setUID("");
+      }
+    });
+
+  
   runApp(const MyApp());
 }
 

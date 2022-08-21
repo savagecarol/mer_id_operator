@@ -10,7 +10,7 @@ import '../services/PreferenceService.dart';
 
 var currentPage = 0;
 var role = "user";
-UserProfile userProfile = UserProfile(name: "", number: "", userId: "", status: "absent");
+UserProfile userProfile = UserProfile(uuid: "",name: "", number: "", userId: "", status: "absent");
 
 final PreferenceService preferenceService = PreferenceService.getInstance();
 final ApiService apiService = ApiService.getInstance();

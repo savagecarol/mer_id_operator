@@ -48,7 +48,7 @@ class ApiService {
   }
 
   Future<bool> currentStatus(String phoneNumber, String otp) async {
-    String authId = await PreferenceService.uid;
+    String? authId = await preferenceService.getUID();
     print(authId);
     final String url = "$baseUrl/auth/current-status";
     Response res = await get(
@@ -71,9 +71,8 @@ class ApiService {
   }
 
   Future<void> getProfile() async {
-    String authId = await PreferenceService.uid;
-    final String url = "$baseUrl/auth/profile";
-
+    String? authId = await preferenceService.getUID();
+    final String url = "$baseUrl/auth/profile/operator";
     Response res = await get(
       Uri.parse(url),
       headers: {
@@ -81,21 +80,22 @@ class ApiService {
         'Authorization': '$token $authId'
       },
     );
-
     if (res.statusCode == 200) {
       var body = jsonDecode(res.body);
       userProfile = UserProfile(
+          uuid: body['data']['uuid'],
           name: body['data']['name'],
-          number: body['data']['phone_number'],
-          userId: body['data']['user'],
+          number: body['data']['number'],
+          userId: body['data']['userId'],
           status: body['data']['status'],
           attendance: body['data']['attendance']);
     } else {
       userProfile = UserProfile(
+          uuid: "uuid",
           name: "User",
           number: "7830980xxx",
           userId: "123",
-          status: "absent",
+          status: "active",
           attendance: "absent");
     }
   }
@@ -129,7 +129,7 @@ class ApiService {
   }
 
   Future<bool> punchInAttendance(String date, String time) async {
-    String authId = await PreferenceService.uid;
+    String? authId = await preferenceService.getUID();
     final String url = "$baseUrl/auth/issue";
     Response res = await post(Uri.parse(url),
         headers: {
@@ -149,7 +149,7 @@ class ApiService {
   }
 
   Future<bool> punchOutAttendance(String date, String time) async {
-    String authId = await PreferenceService.uid;
+    String? authId = await preferenceService.getUID();
     final String url = "$baseUrl/auth/issue";
     Response res = await post(Uri.parse(url),
         headers: {

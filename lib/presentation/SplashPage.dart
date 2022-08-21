@@ -29,23 +29,10 @@ class _SplashPageState extends State<SplashPage> {
     }
   }
 
-    @override
+  @override
   void initState() {
     super.initState();
-    cronJob();
   }
-
-
-Future<void>  cronJob() async{
-  final cron = Cron();
-  cron.schedule(Schedule.parse('*/15 * * * * *'), () async {
-    await startService.doRun();
-      if (userProfile.status == "disable") {
-        await preferenceService.setUID("");
-        Navigator.pushNamed(context, FirstPage.routeNamed);
-      }
-    });
-}
 
 
   _getBottomBar() {
