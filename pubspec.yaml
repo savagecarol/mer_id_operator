@@ -44,7 +44,6 @@ dependencies:
   location: ^4.4.0
   path_provider: ^2.0.11
   provider: ^6.0.3
-  # qr_code_scanner: ^1.0.0
   shared_preferences: null
   url_launcher: ^6.0.0
   firebase_storage:
