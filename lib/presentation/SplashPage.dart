@@ -1,7 +1,6 @@
 import 'package:cron/cron.dart';
 import 'package:flutter/material.dart';
 import 'package:kommunicate_flutter/kommunicate_flutter.dart';
-import 'package:meri_id_operator/presentation/auth/FirstPage.dart';
 
 import '../utils/global.dart';
 import '../utils/styles.dart';
@@ -16,6 +15,7 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  bool isButtonLoading = false;
   _getBody() {
     switch (currentPage) {
       case 0:
@@ -33,7 +33,6 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
   }
-
 
   _getBottomBar() {
     return Container(
@@ -119,8 +118,19 @@ class _SplashPageState extends State<SplashPage> {
               backgroundColor: Styles.grayColor,
               elevation: 12,
               tooltip: 'chat bot',
-              child: const Icon(Icons.help, color: Styles.blackColor),
+              child: (isButtonLoading)
+                  ? Container(
+                      height: 14,
+                      width: 14,
+                      child: const CircularProgressIndicator(
+                        color: Styles.blackColor,
+                      ),
+                    )
+                  : const Icon(Icons.help, color: Styles.blackColor),
               onPressed: () async {
+                setState(() {
+                  isButtonLoading = true;
+                });
                 try {
                   dynamic conversationObject = {
                     'appId': '259ee76a76674e8ee1a6d02613a91595f'
@@ -132,7 +142,11 @@ class _SplashPageState extends State<SplashPage> {
                 } on Exception catch (e) {
                   print(
                       "Conversation builder error occurred : " + e.toString());
+                  errorToast("!OOps Some Error Occur", context);
                 }
+                setState(() {
+                  isButtonLoading = false;
+                });
               })),
     );
   }

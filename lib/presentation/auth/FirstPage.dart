@@ -21,6 +21,7 @@ class _FirstPageState extends State<FirstPage> {
   bool _showFingerPrintButton = true;
   bool _isTimer = true;
   bool _language = true;
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -81,6 +82,7 @@ class _FirstPageState extends State<FirstPage> {
                             : const EdgeInsets.all(0),
                         child: (!_isTimer && _showFingerPrintButton)
                             ? CustomButton(
+                                isLoading: isLoading,
                                 postIcon: Icons.arrow_forward_ios,
                                 visiblepostIcon: false,
                                 labelText: (_language)
@@ -88,6 +90,9 @@ class _FirstPageState extends State<FirstPage> {
                                     : StringValues.fingerprint.hindi,
                                 containerColor: Styles.redColor,
                                 onTap: () async {
+                                  setState(() {
+                                    isLoading = true;
+                                  });
                                   final isAuthenticated =
                                       await LocalAuthApi.authenticate();
                                   print(isAuthenticated);
@@ -97,6 +102,9 @@ class _FirstPageState extends State<FirstPage> {
                                   } else {
                                     errorToast("Please Try Again", context);
                                   }
+                                    setState(() {
+                                    isLoading = false;
+                                  });
                                 })
                             : Container()),
                     Padding(
