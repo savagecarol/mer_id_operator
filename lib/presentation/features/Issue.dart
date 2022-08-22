@@ -19,6 +19,7 @@ class _IssueState extends State<Issue> {
   String issue = "";
   bool isButtonLoading = false;
 
+@override
   void initState() {
     super.initState();
     _parent();
