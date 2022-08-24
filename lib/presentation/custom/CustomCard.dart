@@ -10,6 +10,7 @@ import '../../utils/strings.dart';
 
 class CustomCard extends StatelessWidget {
   final String booking_id;
+  final String address;
   final String date;
   final String time;
   final String name;
@@ -24,6 +25,7 @@ class CustomCard extends StatelessWidget {
 
   const CustomCard(
       {this.booking_id = "12345",
+      this.address = "",
       this.isStart = true,
       this.date = "Date",
       this.time = "Time",
@@ -56,43 +58,42 @@ class CustomCard extends StatelessWidget {
                 const EdgeInsets.only(top: 16, bottom: 8, right: 16, left: 16),
             child: Column(
               children: [
-                  Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomText.mediumText(booking_id),
-                   
                     InkWell(
                         onTap: () {
                           makeCall();
                         },
-                        child: 
-                          Container(
+                        child: Container(
                             decoration: BoxDecoration(
-                              color: (isStart) ? Colors.blue[400] : Colors.green,
+                              color:
+                                  (isStart) ? Colors.blue[400] : Colors.green,
                               borderRadius: BorderRadius.circular(5),
                             ),
-                            padding: const EdgeInsets.symmetric(horizontal: 12 , vertical: 4),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 4),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                              Text( (isStart) ? "Start" : "Call" ,
-                            style: GoogleFonts.montserrat(
-                              textStyle: const TextStyle(
-                            fontSize: 16,
-                            color: Styles.backgroundColor,
-                            fontWeight: FontWeight.w500))),
-                              const Icon(Icons.arrow_forward, color:  Styles.backgroundColor,)         
+                                Text((isStart) ? "Start" : "Call",
+                                    style: GoogleFonts.montserrat(
+                                        textStyle: const TextStyle(
+                                            fontSize: 16,
+                                            color: Styles.backgroundColor,
+                                            fontWeight: FontWeight.w500))),
+                                const Icon(
+                                  Icons.arrow_forward,
+                                  color: Styles.backgroundColor,
+                                )
                               ],
-                            )
-                          )
-                         ),
+                            ))),
                   ],
-                
                 ),
-                 const SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
-
                 InkWell(
                   onTap: () {
                     onMapClick();
@@ -139,8 +140,12 @@ class CustomCard extends StatelessWidget {
                     CustomText.timeText(time),
                   ],
                 ),
-                 const SizedBox(
-                  height: 4,
+                const SizedBox(
+                  height: 8,
+                ),
+                CustomText.timeText(address),
+                const SizedBox(
+                  height: 8,
                 ),
               ],
             ),

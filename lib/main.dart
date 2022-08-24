@@ -1,4 +1,3 @@
-// import 'package:cron/cron.dart';
 import 'package:cron/cron.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,6 @@ import 'package:meri_id_operator/presentation/features/Info.dart';
 import 'package:meri_id_operator/presentation/features/Issue.dart';
 import 'package:meri_id_operator/presentation/features/Language.dart';
 import 'package:meri_id_operator/presentation/features/QRpage.dart';
-import 'package:meri_id_operator/presentation/features/Selfie.dart';
 import 'package:meri_id_operator/utils/global.dart';
 import 'presentation/features/Feeds.dart';
 import 'utils/strings.dart';
@@ -56,7 +54,6 @@ class MyApp extends StatelessWidget {
           Issue.routeNamed: (BuildContext context) => Issue(),
           Info.routeNamed: (BuildContext context) => Info(),
           PhoneNumber.routeNamed: (BuildContext context) => PhoneNumber(),
-          Selfie.routeNamed: (BuildContext context) => Selfie(),
           QRpage.routeNamed: (BuildContext context) => QRpage(),
         });
   }

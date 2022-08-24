@@ -105,6 +105,7 @@ class _HomeState extends State<Home> {
                       : Container(),
                   for (int i = 0; i < bookList.length; i++)
                     CustomCard(
+                      address: bookList[i].address,
                       name: bookList[i].name,
                       booking_id: bookList[i].bookingId,
                       date: bookList[i].day,
@@ -121,9 +122,10 @@ class _HomeState extends State<Home> {
                       makeCall: () async {
                         if (bookList[i].status == "accepted") {
                           try {
-                            bool val  = await apiService.updateBooking(bookList[i].uuid);
-                            if(val) successToast("Ready To Proceed", context);
-                             errorToast("!OOps Some Error Occur", context);
+                            bool val = await apiService
+                                .updateBooking(bookList[i].uuid);
+                            if (val) successToast("Ready To Proceed", context);
+                            errorToast("!OOps Some Error Occur", context);
                             _bookListFetch();
                           } catch (e) {
                             errorToast("!OOps Some Error Occur", context);

@@ -183,6 +183,8 @@ class ApiService {
         'Authorization': '$token $authId'
       },
     );
+    print(response.body);
+    print(response.statusCode);
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
       var res = body["data"];
@@ -197,7 +199,8 @@ class ApiService {
             day: res[i]["date"] ?? "",
             number: res[i]["number"] ?? "",
             uuid: res[i]["uuid"] ?? "",
-            status: res[i]["status"] ?? ""));
+            status: res[i]["status"] ?? "",
+            address: res[i]["address"] ?? ""));
       }
     }
     return bookList;
@@ -220,5 +223,30 @@ class ApiService {
       return true;
     }
     return false;
+  }
+
+  Future<String> getUrl(String imageUrl, String bookingId) async {
+    String? authId = await preferenceService.getUID();
+    final String url = "$baseUrl/booking/operator/verify";
+    print(bookingId);
+    print(imageUrl);
+    print(userProfile.uuid);
+    Response res = await post(Uri.parse(url),
+        headers: {
+          'content-type': 'application/json',
+          'Authorization': '$token $authId'
+        },
+        body: jsonEncode(<String, String>{
+          "image_url": imageUrl,
+          "booking": bookingId,
+          "uuid": userProfile.uuid
+        }));
+    print(res.body);
+    print(res.statusCode);
+    if (res.statusCode == 200) {
+      var body = jsonDecode(res.body);
+      return body["data"]["url"];
+    }
+    return "";
   }
 }
