@@ -85,8 +85,8 @@ class _SelfieState extends State<Selfie> {
                     errorToast("Please Upload the Image", context);
                     return;
                   }
-                  String val = await apiService.getUrl(defaultContainerUrl!,
-                      "8620a86e-8bfd-4718-bee5-6150dc10bd93");
+                  String val = await apiService.getUrl(
+                      defaultContainerUrl!, widget.code);
                   if (val != "") {
                     launchUrl(Uri.parse(val));
                     currentPage = 0;
