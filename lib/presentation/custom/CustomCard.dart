@@ -143,7 +143,21 @@ class CustomCard extends StatelessWidget {
                 const SizedBox(
                   height: 8,
                 ),
-                CustomText.timeText(address),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: 180,
+                      child: CustomText.timeText(address)
+                      ),
+                    if(persons == 1)
+                    CustomText.smallText("20 min"),
+                    if(persons == 2)
+                    CustomText.smallText("40 min"),
+                    if(persons == 3)
+                    CustomText.smallText("60 min")       
+                  ],
+                ),
                 const SizedBox(
                   height: 8,
                 ),
